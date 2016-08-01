@@ -54,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
 
     int COMPRESSION = 30;
     int SAMPLE_SIZE = 3;
+    int INDEF_REPEAT = 0;
+    int DELAY = 2000;
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -140,19 +142,6 @@ public class MainActivity extends AppCompatActivity {
                     // Get the Uri of the selected file
                     Uri uri = data.getData();
                     Bitmap bitmap = null;
-                    /*
-
-                    File imgFile = new File(uri.getEncodedPath()
-                    try {
-                        OutputStream out = new FileOutputStream(imgFile);
-                        bitmap.compress(Bitmap.CompressFormat.JPEG, 80, out);
-                        out.close();
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }*/
-
                     try {
                         bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
                         String size = Integer.toString(bitmap.getAllocationByteCount());
@@ -175,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     BitmapFactory.Options options = new BitmapFactory.Options();
                     options.inJustDecodeBounds = false;
-                    options.inSampleSize = 3;
+                    options.inSampleSize = SAMPLE_SIZE;
 
                     Bitmap bitmap2 = BitmapFactory.decodeFile(tmpFile.getPath(), options);
                     Log.d("tmpFile", tmpFile.getPath());
@@ -217,10 +206,10 @@ public class MainActivity extends AppCompatActivity {
         // Repeat setting:
         // 0 is indefinite
         // must be invoked before adding first image!
-        encoder.setRepeat(0);
+        encoder.setRepeat(INDEF_REPEAT);
         // Delay settings:
         // I dunno
-        encoder.setDelay(2000);
+        encoder.setDelay(DELAY);
         // Size Settings:
         // I dunno
         for (Bitmap bitmap : bitmaps) {

@@ -17,7 +17,10 @@
             android:layout_height="50dp"
             android:id="@+id/preview"/>
     </LinearLayout>
-
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter GIF title"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

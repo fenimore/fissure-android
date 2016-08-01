@@ -9,6 +9,7 @@ Sooo this is supposed to be an F/OSS android app which makes gifs on the fly fro
 2. Enter in File name
 3. Compress files
 3. Clear Bitmaps array
+5. Async gif creation..?
 4. Dynamic gridview of bitmaps
 
 ### Preferences
