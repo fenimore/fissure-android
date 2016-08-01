@@ -21,6 +21,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
@@ -30,6 +31,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -41,6 +44,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     ArrayList<Bitmap> bitmaps = new ArrayList<Bitmap>();
     ArrayList<String> images;
+    ArrayList<Uri> uris = new ArrayList<Uri>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,13 +53,24 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Button btnGen = (Button)findViewById(R.id.generateGIF);
+        final ImageView prevImg = (ImageView)findViewById(R.id.preview);
 
         // List view of images
         images = new ArrayList<String>();
         ListView lv = (ListView)findViewById(R.id.listImage);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1 , images);
-
         lv.setAdapter(adapter);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getBaseContext(), images.get(position),
+                    Toast.LENGTH_SHORT).show();
+                //File previewFile = new File(uris.get(position));
+                //Uri uri = Uri.fromFile(previewFile);
+                prevImg.setImageURI(uris.get(position));
+            }
+        });
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +83,9 @@ public class MainActivity extends AppCompatActivity {
         btnGen.setOnClickListener(new View.OnClickListener() {
              public void onClick(View v) {
                  // Perform action on click
-
+                 saveGIF(bitmaps, "test.gif");
+                 Toast.makeText(getBaseContext(), "Saved GIF in Pictures/gif/",
+                         Toast.LENGTH_SHORT).show();
              }
          });
 
@@ -102,15 +119,23 @@ public class MainActivity extends AppCompatActivity {
                 if (resultCode == RESULT_OK) {
                     // Get the Uri of the selected file
                     Uri uri = data.getData();
+                    File img = new File(uri.getPath());
+                    try {
+                        Bitmap brit = decodeFile(img);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     Log.d("Yup", "File Uri Path: " + uri.getPath());
                     //Log.d("Real Path", getRealPathFromURI(uri));
                     try {
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
                         ListView lv = (ListView)findViewById(R.id.listImage);
                         // Update arrays
+
                         bitmaps.add(bitmap);
                         images.add(uri.getPath());
-                        //imageViews.add(bitmap);
+                        uris.add(uri);
+
                         ((ArrayAdapter) lv.getAdapter()).notifyDataSetChanged();
                         if(bitmap!=null)  {
                             bitmap.recycle();
@@ -129,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
         FileOutputStream outStream = null;
         try{
             //outStream = new FileOutputStream("/storage/emulated/0/test.gif");
-            outStream = new FileOutputStream(Environment.DIRECTORY_PICTURES + "/gif/" + filename);
+            outStream = new FileOutputStream( "/storage/emulated/0/test.gif");// Environment.DIRECTORY_PICTURES + filename
             outStream.write(generateGIF(bitmaps));
             // TOAST
             outStream.close();
@@ -174,5 +199,31 @@ public class MainActivity extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
         }
     }
+    private Bitmap decodeFile(File f) throws IOException {
+        Bitmap b = null;
 
+        //Decode image size
+        BitmapFactory.Options o = new BitmapFactory.Options();
+        o.inJustDecodeBounds = true;
+
+        FileInputStream fis = new FileInputStream(f);
+        BitmapFactory.decodeStream(fis, null, o);
+        fis.close();
+
+        int scale = 1;
+        int IMAGE_MAX_SIZE = 70;
+        if (o.outHeight > IMAGE_MAX_SIZE || o.outWidth > IMAGE_MAX_SIZE) {
+            scale = (int)Math.pow(2, (int) Math.ceil(Math.log(IMAGE_MAX_SIZE /
+                    (double) Math.max(o.outHeight, o.outWidth)) / Math.log(0.5)));
+        }
+
+        //Decode with inSampleSize
+        BitmapFactory.Options o2 = new BitmapFactory.Options();
+        o2.inSampleSize = scale;
+        fis = new FileInputStream(f);
+        b = BitmapFactory.decodeStream(fis, null, o2);
+        fis.close();
+
+        return b;
+    }
 }
