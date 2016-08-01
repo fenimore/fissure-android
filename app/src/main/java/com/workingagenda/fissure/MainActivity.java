@@ -143,7 +143,8 @@ public class MainActivity extends AppCompatActivity {
                         uris.add(uri);
                         ((ArrayAdapter) lv.getAdapter()).notifyDataSetChanged();
                         if(bitmap!=null)  {
-                            bitmap.recycle();
+                            //bitmap.recycle();
+                            
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
