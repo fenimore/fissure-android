@@ -22,6 +22,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,7 +44,10 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Button btnGen = (Button)findViewById(R.id.generateGIF);
-
+        //ImageView iv=(ImageView)findViewById(R.id.testimage);
+        //if (bitmaps.size() > 0){
+        //iv.setImageBitmap(bitmaps.get(0));
+        //}
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,11 +98,9 @@ public class MainActivity extends AppCompatActivity {
                     //Log.d("Real Path", getRealPathFromURI(uri));
                     try {
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
-                        Log.d("Image:", bitmap.toString());
-                        ImageView iv=(ImageView)findViewById(R.id.testimage);
                         TextView tv = (TextView)findViewById(R.id.imageSelections);
-                        //iv.setImageBitmap(bitmap);
-                        tv.append(uri.getPath());
+                        ListView lv = (ListView)findViewById(R.id.);
+                        tv.append("\n" + uri.getPath());
 
                         bitmaps.add(bitmap);
                         if(bitmap!=null)  {

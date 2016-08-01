@@ -11,16 +11,26 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.workingagenda.fissure.MainActivity"
     tools:showIn="@layout/activity_main">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@android:id/list"
+            ></ListView>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/generateGIF"
+            android:text="Generate"/>
+    </LinearLayout>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add Images by clicking below"
-        android:id="@+id/imageSelections"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/generateGIF"
-        android:text="Generate"/>
+        android:id="@+id/imageSelections" />
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="50dp"
