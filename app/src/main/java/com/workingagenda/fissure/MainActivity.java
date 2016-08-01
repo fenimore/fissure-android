@@ -20,6 +20,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -33,9 +35,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     ArrayList<Bitmap> bitmaps = new ArrayList<Bitmap>();
+    ArrayList<String> images;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +51,11 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Button btnGen = (Button)findViewById(R.id.generateGIF);
-        //ImageView iv=(ImageView)findViewById(R.id.testimage);
-        //if (bitmaps.size() > 0){
-        //iv.setImageBitmap(bitmaps.get(0));
-        //}
+        images = new ArrayList<String>();
+        ListView lv = (ListView)findViewById(R.id.listImage);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, images);
+
+        lv.setAdapter(adapter);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,10 +107,12 @@ public class MainActivity extends AppCompatActivity {
                     try {
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
                         TextView tv = (TextView)findViewById(R.id.imageSelections);
-                        ListView lv = (ListView)findViewById(R.id.);
-                        tv.append("\n" + uri.getPath());
+                        ListView lv = (ListView)findViewById(R.id.listImage);
 
+                        tv.append("\n" + uri.getPath());
                         bitmaps.add(bitmap);
+                        images.add(uri.getPath());
+                        ((ArrayAdapter) lv.getAdapter()).notifyDataSetChanged();
                         if(bitmap!=null)  {
                             bitmap.recycle();
                         }

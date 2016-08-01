@@ -11,21 +11,17 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.workingagenda.fissure.MainActivity"
     tools:showIn="@layout/activity_main">
-    <LinearLayout
+
+    <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <ListView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@android:id/list"
-            ></ListView>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/generateGIF"
-            android:text="Generate"/>
-    </LinearLayout>
+        android:id="@+id/listImage"
+        ></ListView>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/generateGIF"
+        android:text="Generate"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
