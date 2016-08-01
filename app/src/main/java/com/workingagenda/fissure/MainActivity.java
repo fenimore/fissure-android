@@ -119,23 +119,28 @@ public class MainActivity extends AppCompatActivity {
                 if (resultCode == RESULT_OK) {
                     // Get the Uri of the selected file
                     Uri uri = data.getData();
+                    /*
                     File img = new File(uri.getPath());
-                    try {
-                        Bitmap brit = decodeFile(img);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    Bitmap brit = decodeFile(img);
+                    ListView lv = (ListView)findViewById(R.id.listImage);
+
+                    bitmaps.add(brit);
+                    images.add(uri.getPath());
+                    uris.add(uri);
+
+                    ((ArrayAdapter) lv.getAdapter()).notifyDataSetChanged();
+                     */
+
+
                     Log.d("Yup", "File Uri Path: " + uri.getPath());
-                    //Log.d("Real Path", getRealPathFromURI(uri));
+
                     try {
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
                         ListView lv = (ListView)findViewById(R.id.listImage);
                         // Update arrays
-
                         bitmaps.add(bitmap);
                         images.add(uri.getPath());
                         uris.add(uri);
-
                         ((ArrayAdapter) lv.getAdapter()).notifyDataSetChanged();
                         if(bitmap!=null)  {
                             bitmap.recycle();
@@ -143,6 +148,7 @@ public class MainActivity extends AppCompatActivity {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+
                 }
                 break;
         }
@@ -199,31 +205,28 @@ public class MainActivity extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
         }
     }
-    private Bitmap decodeFile(File f) throws IOException {
-        Bitmap b = null;
+    private Bitmap decodeFile(File f) {
+        try {
+            // Decode image size
+            BitmapFactory.Options o = new BitmapFactory.Options();
+            o.inJustDecodeBounds = true;
+            BitmapFactory.decodeStream(new FileInputStream(f), null, o);
 
-        //Decode image size
-        BitmapFactory.Options o = new BitmapFactory.Options();
-        o.inJustDecodeBounds = true;
+            // The new size we want to scale to
+            final int REQUIRED_SIZE=70;
 
-        FileInputStream fis = new FileInputStream(f);
-        BitmapFactory.decodeStream(fis, null, o);
-        fis.close();
+            // Find the correct scale value. It should be the power of 2.
+            int scale = 1;
+            while(o.outWidth / scale / 2 >= REQUIRED_SIZE &&
+                  o.outHeight / scale / 2 >= REQUIRED_SIZE) {
+                scale *= 2;
+            }
 
-        int scale = 1;
-        int IMAGE_MAX_SIZE = 70;
-        if (o.outHeight > IMAGE_MAX_SIZE || o.outWidth > IMAGE_MAX_SIZE) {
-            scale = (int)Math.pow(2, (int) Math.ceil(Math.log(IMAGE_MAX_SIZE /
-                    (double) Math.max(o.outHeight, o.outWidth)) / Math.log(0.5)));
-        }
-
-        //Decode with inSampleSize
-        BitmapFactory.Options o2 = new BitmapFactory.Options();
-        o2.inSampleSize = scale;
-        fis = new FileInputStream(f);
-        b = BitmapFactory.decodeStream(fis, null, o2);
-        fis.close();
-
-        return b;
+            // Decode with inSampleSize
+            BitmapFactory.Options o2 = new BitmapFactory.Options();
+            o2.inSampleSize = scale;
+            return BitmapFactory.decodeStream(new FileInputStream(f), null, o2);
+        } catch (FileNotFoundException e) {}
+        return null;
     }
 }
