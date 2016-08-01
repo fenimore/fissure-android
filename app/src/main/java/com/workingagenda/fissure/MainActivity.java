@@ -117,12 +117,11 @@ public class MainActivity extends AppCompatActivity {
         switch (requestCode) {
             case 0:
                 if (resultCode == RESULT_OK) {
+                    ListView lv = (ListView)findViewById(R.id.listImage);
                     // Get the Uri of the selected file
                     Uri uri = data.getData();
                     /*
                     File img = new File(uri.getPath());
-                    Bitmap brit = decodeFile(img);
-                    ListView lv = (ListView)findViewById(R.id.listImage);
 
                     bitmaps.add(brit);
                     images.add(uri.getPath());
@@ -131,25 +130,18 @@ public class MainActivity extends AppCompatActivity {
                     ((ArrayAdapter) lv.getAdapter()).notifyDataSetChanged();
                      */
 
-
-                    Log.d("Yup", "File Uri Path: " + uri.getPath());
-
+                    /*
                     try {
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
-                        ListView lv = (ListView)findViewById(R.id.listImage);
                         // Update arrays
                         bitmaps.add(bitmap);
                         images.add(uri.getPath());
                         uris.add(uri);
-                        ((ArrayAdapter) lv.getAdapter()).notifyDataSetChanged();
-                        if(bitmap!=null)  {
-                            //bitmap.recycle();
-                            
-                        }
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-
+                    */
+                    ((ArrayAdapter) lv.getAdapter()).notifyDataSetChanged();
                 }
                 break;
         }
@@ -161,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
         FileOutputStream outStream = null;
         try{
             //outStream = new FileOutputStream("/storage/emulated/0/test.gif");
-            outStream = new FileOutputStream( "/storage/emulated/0/test.gif");// Environment.DIRECTORY_PICTURES + filename
+            outStream = new FileOutputStream( "/storage/emulated/0/test1.gif");// Environment.DIRECTORY_PICTURES + filename
             outStream.write(generateGIF(bitmaps));
             // TOAST
             outStream.close();
