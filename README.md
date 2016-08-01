@@ -7,6 +7,9 @@ I don't know if this will go anywhere....
 ### Immediate
 1. Select multiple images for bitmaps frames
 2. Enter in File name
+3. Compress files
+3. Clear Bitmaps array
+4. Dynamic gridview of bitmaps
 
 ### Preferences
 1. Delay defaults

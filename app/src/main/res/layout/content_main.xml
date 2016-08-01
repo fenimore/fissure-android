@@ -11,13 +11,19 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.workingagenda.fissure.MainActivity"
     tools:showIn="@layout/activity_main">
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
-    <ImageView
+        android:text="Add Images by clicking below"
+        android:id="@+id/imageSelections"/>
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/generateGIF"
+        android:text="Generate"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
         android:id="@+id/testimage"/>
+
 </RelativeLayout>

@@ -14,11 +14,15 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.SpannableStringBuilder;
+import android.text.style.ImageSpan;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
@@ -38,21 +42,24 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        ImageView iv=(ImageView)findViewById(R.id.testimage);
-
-        //bitmaps.add(bm1); // Add a bitmap
-
+        Button btnGen = (Button)findViewById(R.id.generateGIF);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showFileChooser();
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Select Image", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
+        btnGen.setOnClickListener(new View.OnClickListener() {
+             public void onClick(View v) {
+                 // Perform action on click
+
+             }
+         });
+
     }
 
     @Override
@@ -89,7 +96,10 @@ public class MainActivity extends AppCompatActivity {
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
                         Log.d("Image:", bitmap.toString());
                         ImageView iv=(ImageView)findViewById(R.id.testimage);
+                        TextView tv = (TextView)findViewById(R.id.imageSelections);
                         iv.setImageBitmap(bitmap);
+                        tv.append(uri.getPath());
+
                         bitmaps.add(bitmap);
                     } catch (IOException e) {
                         e.printStackTrace();
