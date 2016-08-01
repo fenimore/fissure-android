@@ -170,10 +170,10 @@ public class MainActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     BitmapFactory.Options options = new BitmapFactory.Options();
-                    options.inJustDecodeBounds = true;
-                    options.
+                    options.inJustDecodeBounds = false;
+                    options.inSampleSize = 2;
 
-                    Bitmap bitmap2 = BitmapFactory.decodeFile(tmpFile.getPath(), );
+                    Bitmap bitmap2 = BitmapFactory.decodeFile(tmpFile.getPath(), options);
                     Log.d("tmpFile", tmpFile.getPath());
                     tmpFile.delete();
                     String size = Integer.toString(bitmap2.getAllocationByteCount());
