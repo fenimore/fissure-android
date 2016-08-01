@@ -97,10 +97,13 @@ public class MainActivity extends AppCompatActivity {
                         Log.d("Image:", bitmap.toString());
                         ImageView iv=(ImageView)findViewById(R.id.testimage);
                         TextView tv = (TextView)findViewById(R.id.imageSelections);
-                        iv.setImageBitmap(bitmap);
+                        //iv.setImageBitmap(bitmap);
                         tv.append(uri.getPath());
 
                         bitmaps.add(bitmap);
+                        if(bitmap!=null)  {
+                            bitmap.recycle();
+                        }
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
