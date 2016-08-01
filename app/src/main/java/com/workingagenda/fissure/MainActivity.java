@@ -51,6 +51,10 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Bitmap> bitmaps = new ArrayList<Bitmap>();
     ArrayList<String> images;
     ArrayList<Uri> uris = new ArrayList<Uri>();
+
+    int COMPRESSION = 30;
+    int SAMPLE_SIZE = 3;
+
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -163,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
                     try {
                         tmpFile.createNewFile();
                         out = new FileOutputStream(tmpFile);
-                        bitmap.compress(Bitmap.CompressFormat.JPEG, 50, out);
+                        bitmap.compress(Bitmap.CompressFormat.JPEG, 20, out);
                         Log.d("Outstream", out.toString());
                         out.close();
                     } catch (IOException e) {
@@ -171,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     BitmapFactory.Options options = new BitmapFactory.Options();
                     options.inJustDecodeBounds = false;
-                    options.inSampleSize = 2;
+                    options.inSampleSize = 3;
 
                     Bitmap bitmap2 = BitmapFactory.decodeFile(tmpFile.getPath(), options);
                     Log.d("tmpFile", tmpFile.getPath());
@@ -240,84 +244,5 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Please install a File Manager.",
                     Toast.LENGTH_SHORT).show();
         }
-    }
-
-    private Bitmap compressFile(Bitmap bm, File f) {
-        OutputStream stream = null;
-        try {
-            stream = new FileOutputStream(f);
-            bm.compress(Bitmap.CompressFormat.JPEG, 30, stream);
-            stream.close();
-            return bm;
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            return null;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public static int calculateInSampleSize(
-            BitmapFactory.Options options, int reqWidth, int reqHeight) {
-        // Raw height and width of image
-        final int height = options.outHeight;
-        final int width = options.outWidth;
-        int inSampleSize = 1;
-
-        if (height > reqHeight || width > reqWidth) {
-
-            final int halfHeight = height / 2;
-            final int halfWidth = width / 2;
-
-            // Calculate the largest inSampleSize value that is a power of 2 and keeps both
-            // height and width larger than the requested height and width.
-            while ((halfHeight / inSampleSize) >= reqHeight
-                    && (halfWidth / inSampleSize) >= reqWidth) {
-                inSampleSize *= 2;
-            }
-        }
-
-        return inSampleSize;
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "Main Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app deep link URI is correct.
-                Uri.parse("android-app://com.workingagenda.fissure/http/host/path")
-        );
-        AppIndex.AppIndexApi.start(client, viewAction);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "Main Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app deep link URI is correct.
-                Uri.parse("android-app://com.workingagenda.fissure/http/host/path")
-        );
-        AppIndex.AppIndexApi.end(client, viewAction);
-        client.disconnect();
     }
 }

@@ -1,5 +1,5 @@
 # fissure-android
-I don't know if this will go anywhere....
+Sooo this is supposed to be an F/OSS android app which makes gifs on the fly from images on the phone. While it essentially *does* that, it doesn't work so well. There are many problems. Many.
 
 
 ## Roadmap
@@ -18,6 +18,8 @@ I don't know if this will go anywhere....
 
 ### Viewing
 1. View gifs?
+   - Use glide?
 2. create gif folder?
 
-
+#### Things I've accomplished that I list in order to make myself feel good
+- image compression
