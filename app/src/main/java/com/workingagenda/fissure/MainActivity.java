@@ -25,17 +25,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        // Write Gif
-        FileOutputStream outStream = null;
-        try{
-            outStream = new FileOutputStream("/storage/emulated/0/test.gif");
-            outStream.write(generateGIF());
-            Log.v("Yup", "a new gif");
-            outStream.close();
 
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+
+        ArrayList<Bitmap> bitmaps = new ArrayList<Bitmap>();
+
+        //bitmaps.add(bm1); // Add a bitmap
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,26 +63,38 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public byte[] generateGIF() {
-        Bitmap bm1 = BitmapFactory.decodeResource(getResources(), android.R.drawable.alert_dark_frame);
-        Bitmap bm2 = BitmapFactory.decodeResource(getResources(), android.R.drawable.arrow_down_float);
-        Bitmap bm3 = BitmapFactory.decodeResource(getResources(), android.R.drawable.arrow_up_float);
-        ArrayList<Bitmap> bitmaps = new ArrayList<Bitmap>();
-        bitmaps.add(bm1); // Add a bitmap
-        bitmaps.add(bm2);
-        bitmaps.add(bm3);
+    public byte[] generateGIF(ArrayList<Bitmap> bitmaps) { // pass in bitmap array
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         AnimatedGifEncoder encoder = new AnimatedGifEncoder();
         encoder.start(bos);
+        // Repeat setting:
         // 0 is indefinite
         // must be invoked before adding first image!
         encoder.setRepeat(0);
+        // Delay settings:
+        // I dunno
+        encoder.setDelay(2000);
+        // Size Settings:
+        // I dunno
         for (Bitmap bitmap : bitmaps) {
             encoder.addFrame(bitmap);
         }
-
-        encoder.setDelay(2000);
         encoder.finish();
         return bos.toByteArray();
+    }
+
+    public void saveGIF(ArrayList<Bitmap> bitmaps, String filename) {
+        // Write Gif
+        FileOutputStream outStream = null;
+        try{
+            //outStream = new FileOutputStream("/storage/emulated/0/test.gif");
+            outStream = new FileOutputStream(Environment.DIRECTORY_PICTURES + "/gif/" + filename);
+            outStream.write(generateGIF(bitmaps));
+            // TOAST
+            outStream.close();
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 }
