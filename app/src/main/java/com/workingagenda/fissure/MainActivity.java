@@ -30,6 +30,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    ArrayList<Bitmap> bitmaps = new ArrayList<Bitmap>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         ImageView iv=(ImageView)findViewById(R.id.testimage);
-        ArrayList<Bitmap> bitmaps = new ArrayList<Bitmap>();
+
         //bitmaps.add(bm1); // Add a bitmap
 
 
@@ -89,13 +90,10 @@ public class MainActivity extends AppCompatActivity {
                         Log.d("Image:", bitmap.toString());
                         ImageView iv=(ImageView)findViewById(R.id.testimage);
                         iv.setImageBitmap(bitmap);
+                        bitmaps.add(bitmap);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    // Get the path
-                    // Get the file instance
-                    // File file = new File(path);
-                    // Initiate the upload
                 }
                 break;
         }
@@ -152,17 +150,5 @@ public class MainActivity extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
         }
     }
-
-    private String getRealPathFromURI(Uri contentUri) {
-        String[] proj = { MediaStore.Images.Media.DATA };
-        CursorLoader loader = new CursorLoader(getBaseContext(), contentUri, proj, null, null, null);
-        Cursor cursor = loader.loadInBackground();
-        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-        cursor.moveToFirst();
-        String result = cursor.getString(column_index);
-        cursor.close();
-        return result;
-    }
-
 
 }
