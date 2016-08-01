@@ -1,7 +1,11 @@
 package com.workingagenda.fissure;
 
+import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
@@ -12,9 +16,11 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,15 +32,15 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
         ArrayList<Bitmap> bitmaps = new ArrayList<Bitmap>();
-
         //bitmaps.add(bm1); // Add a bitmap
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                showFileChooser();
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
@@ -62,7 +68,39 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case 0:
+                if (resultCode == RESULT_OK) {
+                    // Get the Uri of the selected file
+                    Uri uri = data.getData();
+                    Log.d("Yup", "File Uri: " + uri.toString());
+                    // Get the path
+                    // Get the file instance
+                    // File file = new File(path);
+                    // Initiate the upload
+                }
+                break;
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+    // Save the gif to file system
+    public void saveGIF(ArrayList<Bitmap> bitmaps, String filename) {
+        // Write Gif
+        FileOutputStream outStream = null;
+        try{
+            //outStream = new FileOutputStream("/storage/emulated/0/test.gif");
+            outStream = new FileOutputStream(Environment.DIRECTORY_PICTURES + "/gif/" + filename);
+            outStream.write(generateGIF(bitmaps));
+            // TOAST
+            outStream.close();
 
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    // Return a byte[] which is infact an encoded GIF
     public byte[] generateGIF(ArrayList<Bitmap> bitmaps) { // pass in bitmap array
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         AnimatedGifEncoder encoder = new AnimatedGifEncoder();
@@ -83,18 +121,21 @@ public class MainActivity extends AppCompatActivity {
         return bos.toByteArray();
     }
 
-    public void saveGIF(ArrayList<Bitmap> bitmaps, String filename) {
-        // Write Gif
-        FileOutputStream outStream = null;
-        try{
-            //outStream = new FileOutputStream("/storage/emulated/0/test.gif");
-            outStream = new FileOutputStream(Environment.DIRECTORY_PICTURES + "/gif/" + filename);
-            outStream.write(generateGIF(bitmaps));
-            // TOAST
-            outStream.close();
+    private void showFileChooser() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*");
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
 
-        }catch(Exception e){
-            e.printStackTrace();
+        try {
+            startActivityForResult(
+                    Intent.createChooser(intent, "Select a File to Upload"),
+                    0);
+        } catch (android.content.ActivityNotFoundException ex) {
+            // Potentially direct the user to the Market with a Dialog
+            Toast.makeText(this, "Please install a File Manager.",
+                    Toast.LENGTH_SHORT).show();
         }
     }
+
+
 }
