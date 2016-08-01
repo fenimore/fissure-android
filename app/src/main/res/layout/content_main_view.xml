@@ -20,7 +20,8 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="myGIF"/>
+        android:hint="myGIF"
+        android:id="@+id/titleValue"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

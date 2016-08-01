@@ -28,6 +28,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -55,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Uri> uris = new ArrayList<Uri>();
     ArrayAdapter<String> adapter;
 
+    EditText editTxt;
+
     int COMPRESSION = 30;
     int SAMPLE_SIZE = 3;
     int INDEF_REPEAT = 0;
@@ -67,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Button btnGen = (Button) findViewById(R.id.generateGIF);
+        editTxt = (EditText) findViewById(R.id.titleValue);
         final ImageView prevImg = (ImageView) findViewById(R.id.preview);
 
         // List view of images?
@@ -97,7 +101,14 @@ public class MainActivity extends AppCompatActivity {
         btnGen.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
-                saveGIF(bitmaps, "test.gif");
+                String filename;
+                if (editTxt.getText() != null) {
+                    filename = editTxt.getText().toString();
+                    filename.concat(".gif");
+                } else {
+                    filename = "myGIF.gif";
+                }
+                saveGIF(bitmaps, filename);
                 Toast.makeText(getBaseContext(), "Saved GIF in Pictures/gif/",
                         Toast.LENGTH_SHORT).show();
             }
