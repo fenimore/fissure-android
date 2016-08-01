@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -41,9 +42,6 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Bitmap> bitmaps = new ArrayList<Bitmap>();
     ArrayList<String> images;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         // List view of images
         images = new ArrayList<String>();
         ListView lv = (ListView)findViewById(R.id.listImage);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, images);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1 , images);
 
         lv.setAdapter(adapter);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -112,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
                         // Update arrays
                         bitmaps.add(bitmap);
                         images.add(uri.getPath());
+                        //imageViews.add(bitmap);
                         ((ArrayAdapter) lv.getAdapter()).notifyDataSetChanged();
                         if(bitmap!=null)  {
                             bitmap.recycle();
