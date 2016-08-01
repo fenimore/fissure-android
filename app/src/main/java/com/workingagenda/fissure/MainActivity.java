@@ -1,5 +1,6 @@
 package com.workingagenda.fissure;
 
+import android.annotation.TargetApi;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.CursorLoader;
@@ -9,6 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.Image;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -51,17 +53,12 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Bitmap> bitmaps = new ArrayList<Bitmap>();
     ArrayList<String> images;
     ArrayList<Uri> uris = new ArrayList<Uri>();
+    ArrayAdapter<String> adapter;
 
     int COMPRESSION = 30;
     int SAMPLE_SIZE = 3;
     int INDEF_REPEAT = 0;
     int DELAY = 2000;
-
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,10 +69,10 @@ public class MainActivity extends AppCompatActivity {
         Button btnGen = (Button) findViewById(R.id.generateGIF);
         final ImageView prevImg = (ImageView) findViewById(R.id.preview);
 
-        // List view of images
+        // List view of images?
         images = new ArrayList<String>();
         ListView lv = (ListView) findViewById(R.id.listImage);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, images);
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, images);
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -105,10 +102,6 @@ public class MainActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
             }
         });
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     @Override
@@ -129,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
             bitmaps.clear();
             images.clear();
             uris.clear();
+            adapter.clear();
         }
         if (id == R.id.action_settings) {
             return true;
@@ -137,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @TargetApi(Build.VERSION_CODES.KITKAT)
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
@@ -167,9 +162,8 @@ public class MainActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     BitmapFactory.Options options = new BitmapFactory.Options();
-                    options.inJustDecodeBounds = false;
                     options.inSampleSize = SAMPLE_SIZE;
-
+                    options.inJustDecodeBounds = false;
                     Bitmap bitmap2 = BitmapFactory.decodeFile(tmpFile.getPath(), options);
                     Log.d("tmpFile", tmpFile.getPath());
                     tmpFile.delete();
