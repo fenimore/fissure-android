@@ -1,5 +1,6 @@
 package com.workingagenda.fissure;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Intent;
@@ -30,6 +31,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -46,6 +51,11 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Bitmap> bitmaps = new ArrayList<Bitmap>();
     ArrayList<String> images;
     ArrayList<Uri> uris = new ArrayList<Uri>();
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,19 +63,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        Button btnGen = (Button)findViewById(R.id.generateGIF);
-        final ImageView prevImg = (ImageView)findViewById(R.id.preview);
+        Button btnGen = (Button) findViewById(R.id.generateGIF);
+        final ImageView prevImg = (ImageView) findViewById(R.id.preview);
 
         // List view of images
         images = new ArrayList<String>();
-        ListView lv = (ListView)findViewById(R.id.listImage);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1 , images);
+        ListView lv = (ListView) findViewById(R.id.listImage);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, images);
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getBaseContext(), images.get(position),
-                    Toast.LENGTH_SHORT).show();
+                        Toast.LENGTH_SHORT).show();
                 //File previewFile = new File(uris.get(position));
                 //Uri uri = Uri.fromFile(previewFile);
                 prevImg.setImageURI(uris.get(position));
@@ -82,14 +92,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         btnGen.setOnClickListener(new View.OnClickListener() {
-             public void onClick(View v) {
-                 // Perform action on click
-                 saveGIF(bitmaps, "test.gif");
-                 Toast.makeText(getBaseContext(), "Saved GIF in Pictures/gif/",
-                         Toast.LENGTH_SHORT).show();
-             }
-         });
+            public void onClick(View v) {
+                // Perform action on click
+                saveGIF(bitmaps, "test.gif");
+                Toast.makeText(getBaseContext(), "Saved GIF in Pictures/gif/",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
 
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     @Override
@@ -113,63 +126,85 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
             case 0:
                 if (resultCode == RESULT_OK) {
-                    ListView lv = (ListView)findViewById(R.id.listImage);
+                    ListView lv = (ListView) findViewById(R.id.listImage);
                     // Get the Uri of the selected file
                     Uri uri = data.getData();
+                    Bitmap bitmap = null;
+                    /*
 
-                    File img = new File(uri.getPath());
-                    InputStream in = null;
+                    File imgFile = new File(uri.getEncodedPath()
                     try {
-                        in = new FileInputStream(img);
-                        Bitmap bm = BitmapFactory.decodeStream(in);
-                        Bitmap bitmap = compressFile(bm, img);
-                        bitmaps.add(bitmap);
+                        OutputStream out = new FileOutputStream(imgFile);
+                        bitmap.compress(Bitmap.CompressFormat.JPEG, 80, out);
+                        out.close();
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
-                    }
-                    images.add(uri.getPath());
-                    uris.add(uri);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }*/
 
-                    ((ArrayAdapter) lv.getAdapter()).notifyDataSetChanged();
-
-
-                    /*
                     try {
-                        Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
-                        // Update arrays
-                        bitmaps.add(bitmap);
-                        images.add(uri.getPath());
-                        uris.add(uri);
+                        bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
+                        String size = Integer.toString(bitmap.getAllocationByteCount());
+                        Log.d("Bitmap One Size:", size);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    */
+                    // Compress
+                    File tmpFile = new File(Environment.getExternalStorageDirectory() +
+                            File.separator + "tmp.jpeg");
+                    FileOutputStream out = null;
+                    try {
+                        tmpFile.createNewFile();
+                        out = new FileOutputStream(tmpFile);
+                        bitmap.compress(Bitmap.CompressFormat.JPEG, 50, out);
+                        Log.d("Outstream", out.toString());
+                        out.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    BitmapFactory.Options options = new BitmapFactory.Options();
+                    options.inJustDecodeBounds = true;
+                    options.
+
+                    Bitmap bitmap2 = BitmapFactory.decodeFile(tmpFile.getPath(), );
+                    Log.d("tmpFile", tmpFile.getPath());
+                    tmpFile.delete();
+                    String size = Integer.toString(bitmap2.getAllocationByteCount());
+                    Log.d("Bitmap Two Size:", size);
+                    // Update Arrays
+                    bitmaps.add(bitmap);
+                    images.add(uri.getPath());
+                    uris.add(uri);
                     ((ArrayAdapter) lv.getAdapter()).notifyDataSetChanged();
                 }
                 break;
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
+
     // Save the gif to file system
     public void saveGIF(ArrayList<Bitmap> bitmaps, String filename) {
         // Write Gif
         FileOutputStream outStream = null;
-        try{
+        try {
             //outStream = new FileOutputStream("/storage/emulated/0/test.gif");
-            outStream = new FileOutputStream( "/storage/emulated/0/test1.gif");// Environment.DIRECTORY_PICTURES + filename
+            outStream = new FileOutputStream("/storage/emulated/0/test1.gif");// Environment.DIRECTORY_PICTURES + filename
             outStream.write(generateGIF(bitmaps));
             // TOAST
             outStream.close();
 
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     // Return a byte[] which is infact an encoded GIF
     public byte[] generateGIF(ArrayList<Bitmap> bitmaps) { // pass in bitmap array
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -200,12 +235,13 @@ public class MainActivity extends AppCompatActivity {
             startActivityForResult(
                     Intent.createChooser(intent, "Select a File to Upload"),
                     0);
-        } catch (android.content.ActivityNotFoundException ex) {
+        } catch (ActivityNotFoundException ex) {
             // Potentially direct the user to the Market with a Dialog
             Toast.makeText(this, "Please install a File Manager.",
                     Toast.LENGTH_SHORT).show();
         }
     }
+
     private Bitmap compressFile(Bitmap bm, File f) {
         OutputStream stream = null;
         try {
@@ -220,5 +256,68 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static int calculateInSampleSize(
+            BitmapFactory.Options options, int reqWidth, int reqHeight) {
+        // Raw height and width of image
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        int inSampleSize = 1;
+
+        if (height > reqHeight || width > reqWidth) {
+
+            final int halfHeight = height / 2;
+            final int halfWidth = width / 2;
+
+            // Calculate the largest inSampleSize value that is a power of 2 and keeps both
+            // height and width larger than the requested height and width.
+            while ((halfHeight / inSampleSize) >= reqHeight
+                    && (halfWidth / inSampleSize) >= reqWidth) {
+                inSampleSize *= 2;
+            }
+        }
+
+        return inSampleSize;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.connect();
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "Main Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app deep link URI is correct.
+                Uri.parse("android-app://com.workingagenda.fissure/http/host/path")
+        );
+        AppIndex.AppIndexApi.start(client, viewAction);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "Main Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app deep link URI is correct.
+                Uri.parse("android-app://com.workingagenda.fissure/http/host/path")
+        );
+        AppIndex.AppIndexApi.end(client, viewAction);
+        client.disconnect();
     }
 }
