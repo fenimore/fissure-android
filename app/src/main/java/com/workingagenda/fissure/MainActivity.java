@@ -70,16 +70,23 @@ public class MainActivity extends AppCompatActivity {
 
     public byte[] generateGIF() {
         Bitmap bm1 = BitmapFactory.decodeResource(getResources(), android.R.drawable.alert_dark_frame);
-        Bitmap bm2 = BitmapFactory.decodeResource(getResources(), android.R.drawable.alert_light_frame);
+        Bitmap bm2 = BitmapFactory.decodeResource(getResources(), android.R.drawable.arrow_down_float);
+        Bitmap bm3 = BitmapFactory.decodeResource(getResources(), android.R.drawable.arrow_up_float);
         ArrayList<Bitmap> bitmaps = new ArrayList<Bitmap>();
         bitmaps.add(bm1); // Add a bitmap
         bitmaps.add(bm2);
+        bitmaps.add(bm3);
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         AnimatedGifEncoder encoder = new AnimatedGifEncoder();
         encoder.start(bos);
+        // 0 is indefinite
+        // must be invoked before adding first image!
+        encoder.setRepeat(0);
         for (Bitmap bitmap : bitmaps) {
             encoder.addFrame(bitmap);
         }
+
+        encoder.setDelay(2000);
         encoder.finish();
         return bos.toByteArray();
     }
