@@ -37,6 +37,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
@@ -120,15 +121,22 @@ public class MainActivity extends AppCompatActivity {
                     ListView lv = (ListView)findViewById(R.id.listImage);
                     // Get the Uri of the selected file
                     Uri uri = data.getData();
-                    /*
-                    File img = new File(uri.getPath());
 
-                    bitmaps.add(brit);
+                    File img = new File(uri.getPath());
+                    InputStream in = null;
+                    try {
+                        in = new FileInputStream(img);
+                        Bitmap bm = BitmapFactory.decodeStream(in);
+                        Bitmap bitmap = compressFile(bm, img);
+                        bitmaps.add(bitmap);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
                     images.add(uri.getPath());
                     uris.add(uri);
 
                     ((ArrayAdapter) lv.getAdapter()).notifyDataSetChanged();
-                     */
+
 
                     /*
                     try {
@@ -198,28 +206,19 @@ public class MainActivity extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
         }
     }
-    private Bitmap decodeFile(File f) {
+    private Bitmap compressFile(Bitmap bm, File f) {
+        OutputStream stream = null;
         try {
-            // Decode image size
-            BitmapFactory.Options o = new BitmapFactory.Options();
-            o.inJustDecodeBounds = true;
-            BitmapFactory.decodeStream(new FileInputStream(f), null, o);
-
-            // The new size we want to scale to
-            final int REQUIRED_SIZE=70;
-
-            // Find the correct scale value. It should be the power of 2.
-            int scale = 1;
-            while(o.outWidth / scale / 2 >= REQUIRED_SIZE &&
-                  o.outHeight / scale / 2 >= REQUIRED_SIZE) {
-                scale *= 2;
-            }
-
-            // Decode with inSampleSize
-            BitmapFactory.Options o2 = new BitmapFactory.Options();
-            o2.inSampleSize = scale;
-            return BitmapFactory.decodeStream(new FileInputStream(f), null, o2);
-        } catch (FileNotFoundException e) {}
+            stream = new FileOutputStream(f);
+            bm.compress(Bitmap.CompressFormat.JPEG, 30, stream);
+            stream.close();
+            return bm;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 }
