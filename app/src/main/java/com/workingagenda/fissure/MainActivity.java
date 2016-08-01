@@ -51,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Button btnGen = (Button)findViewById(R.id.generateGIF);
+
+        // List view of images
         images = new ArrayList<String>();
         ListView lv = (ListView)findViewById(R.id.listImage);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, images);
@@ -106,10 +108,8 @@ public class MainActivity extends AppCompatActivity {
                     //Log.d("Real Path", getRealPathFromURI(uri));
                     try {
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
-                        TextView tv = (TextView)findViewById(R.id.imageSelections);
                         ListView lv = (ListView)findViewById(R.id.listImage);
-
-                        tv.append("\n" + uri.getPath());
+                        // Update arrays
                         bitmaps.add(bitmap);
                         images.add(uri.getPath());
                         ((ArrayAdapter) lv.getAdapter()).notifyDataSetChanged();
