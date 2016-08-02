@@ -2,13 +2,9 @@ package com.workingagenda.fissure;
 
 import android.annotation.TargetApi;
 import android.content.ActivityNotFoundException;
-import android.content.Context;
-import android.content.CursorLoader;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -18,43 +14,29 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.SpannableStringBuilder;
-import android.text.style.ImageSpan;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import com.bumptech.glide.Glide;
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    ArrayList<Bitmap> bitmaps = new ArrayList<Bitmap>();
+    ArrayList<Bitmap> bitmaps = new ArrayList<>();
     ArrayList<String> images;
-    ArrayList<Uri> uris = new ArrayList<Uri>();
+    ArrayList<Uri> uris = new ArrayList<>();
     ArrayAdapter<String> adapter;
 
     EditText editTxt;
@@ -75,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         final ImageView prevImg = (ImageView) findViewById(R.id.preview);
 
         // List view of images?
-        images = new ArrayList<String>();
+        images = new ArrayList<>();
         ListView lv = (ListView) findViewById(R.id.listImage);
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, images);
         lv.setAdapter(adapter);
@@ -84,8 +66,6 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getBaseContext(), images.get(position),
                         Toast.LENGTH_SHORT).show();
-                //File previewFile = new File(uris.get(position));
-                //Uri uri = Uri.fromFile(previewFile);
                 prevImg.setImageURI(uris.get(position));
             }
         });
@@ -103,7 +83,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Perform action on click
                 String filename;
-                filename = "mygif.gif";
+
+                filename = "yupyup.gif";
+                Log.v("what?", editTxt.getText().toString());
+                Log.d("filename: ", "this is annoying");
+                //if (editTxt.getText() != null) {
+//                    filename = editTxt.getText().toString().concat(".gif");
+  //              } else {
+    //                filename = "myGif.gif";
+      //          }
                 saveGIF(bitmaps, filename);
 
             }
@@ -196,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
                     + File.separator + filename);// Environment.DIRECTORY_PICTURES + filename
             outStream.write(generateGIF(bitmaps));
             // TOAST
-            Toast.makeText(getBaseContext(), "Wrote GIF",
+            Toast.makeText(getBaseContext(), "Wrote GIF as " + filename,
                     Toast.LENGTH_SHORT).show();
             outStream.close();
 
