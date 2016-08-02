@@ -56,7 +56,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        //getSupportActionBar().setIcon(R.drawable.ic_launcher);
         Button btnGen = (Button) findViewById(R.id.generateGIF);
+        Button btnDis = (Button) findViewById(R.id.displayGIF);
         editTxt = (EditText) findViewById(R.id.titleValue);
         prevImg = (ImageView) findViewById(R.id.preview);
 
@@ -95,6 +97,11 @@ public class MainActivity extends AppCompatActivity {
                 // TOAST
                 Toast.makeText(getBaseContext(), "Writing GIF as ",
                         Toast.LENGTH_SHORT).show();
+            }
+        });
+        btnDis.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
             }
         });
     }
