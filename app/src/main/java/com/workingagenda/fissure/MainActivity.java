@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -69,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
                 prevImg.setImageURI(uris.get(position));
             }
         });
+        //TODO: Onclick Listener for individual deletes
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -85,8 +88,9 @@ public class MainActivity extends AppCompatActivity {
                 String filename;
 
                 filename = "yupyup.gif";
-                Log.v("what?", editTxt.getText().toString());
-                Log.d("filename: ", "this is annoying");
+                // THIS IS FUCKED UP
+                //Log.v("what?", editTxt.toString());
+                //Log.d("filename: ", "this is annoying");
                 //if (editTxt.getText() != null) {
 //                    filename = editTxt.getText().toString().concat(".gif");
   //              } else {
@@ -229,4 +233,14 @@ public class MainActivity extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
         }
     }
+
+    private class GenerateGif extends AsyncTask<ArrayList, Void, Void> {
+        @Override
+        protected Void doInBackground(ArrayList... params) {
+
+            return null;
+        }
+    }
+
+
 }
