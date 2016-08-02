@@ -22,7 +22,7 @@
             android:id="@+id/gif_status"/>
     </LinearLayout>
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="myGIF"
         android:id="@+id/titleValue"/>

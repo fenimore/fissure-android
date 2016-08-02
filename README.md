@@ -24,3 +24,6 @@ Sooo this is supposed to be an F/OSS android app which makes gifs on the fly fro
 
 #### Things I've accomplished that I list in order to make myself feel good
 - image compression
+- User defined filename
+- File select
+- Gif encoding

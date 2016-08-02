@@ -45,10 +45,10 @@ public class MainActivity extends AppCompatActivity {
 
     String filename;
 
-    int COMPRESSION = 30;
-    int SAMPLE_SIZE = 3;
+    int COMPRESSION = 30; // not a big diff eh?
+    int SAMPLE_SIZE = 3; // ?? unclear to me...
     int INDEF_REPEAT = 0;
-    int DELAY = 2000;
+    int DELAY = 1000; // milliseconds
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
