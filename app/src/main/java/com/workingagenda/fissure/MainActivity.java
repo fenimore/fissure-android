@@ -25,6 +25,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
@@ -41,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
     ArrayAdapter<String> adapter;
 
     EditText editTxt;
+
+    String filename;
 
     int COMPRESSION = 30;
     int SAMPLE_SIZE = 3;
@@ -84,20 +87,14 @@ public class MainActivity extends AppCompatActivity {
         });
         btnGen.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                // Perform action on click
-                String filename;
+                EditText et = (EditText) findViewById(R.id.titleValue);
+                filename = et.getText().toString();
 
-                filename = "yupyup.gif";
-                // THIS IS FUCKED UP
-                //Log.v("what?", editTxt.toString());
-                //Log.d("filename: ", "this is annoying");
-                //if (editTxt.getText() != null) {
-//                    filename = editTxt.getText().toString().concat(".gif");
-  //              } else {
-    //                filename = "myGif.gif";
-      //          }
-                saveGIF(bitmaps, filename);
-
+                Log.d("Begin writing gif", "now");
+                new GenerateGif().execute(bitmaps);
+                // TOAST
+                Toast.makeText(getBaseContext(), "Writing GIF as ",
+                        Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -117,10 +114,7 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_clear) {
-            bitmaps.clear();
-            images.clear();
-            uris.clear();
-            adapter.clear();
+            ClearAll();
         }
         if (id == R.id.action_settings) {
             return true;
@@ -237,10 +231,40 @@ public class MainActivity extends AppCompatActivity {
     private class GenerateGif extends AsyncTask<ArrayList, Void, Void> {
         @Override
         protected Void doInBackground(ArrayList... params) {
+            TextView txtStatus = (TextView) findViewById(R.id.gif_status);
+            // Write Gif
+            //if filename != null
+            String fn;
+            if (filename.isEmpty()){
+                fn = "myAsyncGif.gif";
+            } else {
+                fn = filename.concat(".gif");
+            }
+            FileOutputStream outStream = null;
+            try {
+                outStream = new FileOutputStream(Environment.getExternalStorageDirectory()
+                        + File.separator + fn);// Environment.DIRECTORY_PICTURES + filename
+                outStream.write(generateGIF(bitmaps));
 
+                outStream.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             return null;
+        }
+
+        protected void onPostExecute(Void a) {
+            ClearAll();
         }
     }
 
+    private void ClearAll() {
+        bitmaps.clear();
+        uris.clear();
+        images.clear();
+        adapter.clear();
+        Toast.makeText(getBaseContext(), "Done Writing GIF",
+                        Toast.LENGTH_SHORT).show();
+    }
 
 }
