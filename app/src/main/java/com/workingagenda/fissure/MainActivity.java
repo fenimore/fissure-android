@@ -103,15 +103,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Perform action on click
                 String filename;
-                if (editTxt.getText() != null) {
-                    filename = editTxt.getText().toString();
-                    filename.concat(".gif");
-                } else {
-                    filename = "myGIF.gif";
-                }
+                filename = "mygif.gif";
                 saveGIF(bitmaps, filename);
-                Toast.makeText(getBaseContext(), "Saved GIF in Pictures/gif/",
-                        Toast.LENGTH_SHORT).show();
+
             }
         });
     }
@@ -198,9 +192,12 @@ public class MainActivity extends AppCompatActivity {
         FileOutputStream outStream = null;
         try {
             //outStream = new FileOutputStream("/storage/emulated/0/test.gif");
-            outStream = new FileOutputStream("/storage/emulated/0/test1.gif");// Environment.DIRECTORY_PICTURES + filename
+            outStream = new FileOutputStream(Environment.getExternalStorageDirectory()
+                    + File.separator + filename);// Environment.DIRECTORY_PICTURES + filename
             outStream.write(generateGIF(bitmaps));
             // TOAST
+            Toast.makeText(getBaseContext(), "Wrote GIF",
+                    Toast.LENGTH_SHORT).show();
             outStream.close();
 
         } catch (Exception e) {
