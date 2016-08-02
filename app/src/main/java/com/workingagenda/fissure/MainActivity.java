@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayAdapter<String> adapter;
 
     EditText editTxt;
-
+    ImageView prevImg;
     String filename;
 
     int COMPRESSION = 30; // not a big diff eh?
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         Button btnGen = (Button) findViewById(R.id.generateGIF);
         editTxt = (EditText) findViewById(R.id.titleValue);
-        final ImageView prevImg = (ImageView) findViewById(R.id.preview);
+        prevImg = (ImageView) findViewById(R.id.preview);
 
         // List view of images?
         images = new ArrayList<>();
@@ -123,7 +123,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @TargetApi(Build.VERSION_CODES.KITKAT)
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
@@ -159,8 +158,8 @@ public class MainActivity extends AppCompatActivity {
                     Bitmap bitmap2 = BitmapFactory.decodeFile(tmpFile.getPath(), options);
                     Log.d("tmpFile", tmpFile.getPath());
                     tmpFile.delete();
-                    String size = Integer.toString(bitmap2.getAllocationByteCount());
-                    Log.d("Bitmap Two Size:", size);
+                    //String size = Integer.toString(bitmap2.getAllocationByteCount());
+                    //Log.d("Bitmap Two Size:", size);
                     // Update Arrays
                     bitmaps.add(bitmap);
                     images.add(uri.getPath());
@@ -263,7 +262,8 @@ public class MainActivity extends AppCompatActivity {
         uris.clear();
         images.clear();
         adapter.clear();
-        Toast.makeText(getBaseContext(), "Done Writing GIF",
+        prevImg.setImageResource(android.R.color.transparent);
+        Toast.makeText(getBaseContext(), "Reset Data",
                         Toast.LENGTH_SHORT).show();
     }
 
