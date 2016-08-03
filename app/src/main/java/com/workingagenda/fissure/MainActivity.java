@@ -261,5 +261,24 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(getBaseContext(), "Finished Writing GIF",
                         Toast.LENGTH_SHORT).show();
     }
-
+    private void toggleOrientationLock() {
+        // if isn't locked, lock
+        // Check if locked
+        int isLocked = android.provider.Settings.System.getInt(
+                getContentResolver(),
+                Settings.System.ACCELEROMETER_ROTATION, 0
+        );
+        if (isLocked == 0){
+            int currentOrientation = getResources().getConfiguration().orientation;
+            if (currentOrientation == Configuration.ORIENTATION_LANDSCAPE) {
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
+            }
+            else {
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
+            }
+        } else {
+            // renable
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+        }
+    }
 }

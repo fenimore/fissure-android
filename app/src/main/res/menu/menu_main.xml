@@ -6,10 +6,19 @@
         android:id="@+id/action_clear"
         android:orderInCategory="100"
         android:title="Clear"
-        android:showAsAction="always" />
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_cached_white_24dp"/>
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="200"
         android:title="@string/action_settings"
-        app:showAsAction="never" />
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_settings_white_24dp"/>
+    <item
+        android:id="@+id/action_lock"
+        android:orderInCategory="300"
+        android:title="Lock"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_screen_lock_rotation_white_24dp"
+        />
 </menu>
