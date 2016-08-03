@@ -1,35 +1,20 @@
 # fissure-android
-Sooo this is supposed to be an F/OSS android app which makes gifs on the fly from images on the phone. While it essentially *does* that, it doesn't work so well. There are many problems. Many.
+An Android App I whipped up for generating and viewing GIFs. It works...
 
 
 ## Roadmap
 
 ### Immediate
-1. Select multiple images for bitmaps frames
-2. ~~Enter in File name~~
-3  ~~Compress files~~
-4.. ~~Clear Bitmaps array~~
-5. ~~Async gif creation..?~~
 6. Dynamic gridview of bitmaps
-7. Display GIF in webview
 8. Preferences
  - file default name
  - compression
  - sample size
  - Repeat
-
-### Preferences
-1. Delay defaults
-2. Repeat defaults
-3. Size defaults
-
-### Viewing
-1. View gifs?
-   - Use glide?
+ - GIF size
+9. Instructions Activity
+10. Screen Lock?
+11. Make the listview have decent names of the selected frames
+12. Delete individual frames from listview
 2. create gif folder?
 
-#### Things I've accomplished that I list in order to make myself feel good
-- image compression
-- User defined filename
-- File select
-- Gif encoding
