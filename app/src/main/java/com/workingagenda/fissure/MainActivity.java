@@ -153,8 +153,7 @@ public class MainActivity extends AppCompatActivity {
                     try {
                         tmpFile.createNewFile();
                         out = new FileOutputStream(tmpFile);
-                        bitmap.compress(Bitmap.CompressFormat.JPEG, 20, out);
-                        Log.d("Outstream", out.toString());
+                        bitmap.compress(Bitmap.CompressFormat.JPEG, COMPRESSION, out);
                         out.close();
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -176,25 +175,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
         super.onActivityResult(requestCode, resultCode, data);
-    }
-
-    // Save the gif to file system
-    public void saveGIF(ArrayList<Bitmap> bitmaps, String filename) {
-        // Write Gif
-        FileOutputStream outStream = null;
-        try {
-            //outStream = new FileOutputStream("/storage/emulated/0/test.gif");
-            outStream = new FileOutputStream(Environment.getExternalStorageDirectory()
-                    + File.separator + filename);// Environment.DIRECTORY_PICTURES + filename
-            outStream.write(generateGIF(bitmaps));
-            // TOAST
-            Toast.makeText(getBaseContext(), "Wrote GIF as " + filename,
-                    Toast.LENGTH_SHORT).show();
-            outStream.close();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     // Return a byte[] which is infact an encoded GIF
