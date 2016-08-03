@@ -2,7 +2,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.workingagenda.fissure.MainActivity">
-
     <item
         android:id="@+id/action_view"
         android:orderInCategory="0"
