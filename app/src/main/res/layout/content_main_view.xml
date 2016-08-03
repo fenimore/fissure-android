@@ -12,11 +12,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/generateGIF"
             android:text="Generate"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/displayGIF"
-            android:text="Display"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="50dp"

@@ -18,14 +18,12 @@ import android.view.MenuItem;
  * Created by fen on 8/3/16.
  */
 public class SettingsActivity extends PreferenceActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
-    private AppCompatDelegate mDelegate;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         //getDelegate().installViewFactory();
         //getDelegate().onCreate(savedInstanceState);
         super.onCreate(savedInstanceState);
-        setContentView();
+
         addPreferencesFromResource(R.xml.settings);
     }
 
