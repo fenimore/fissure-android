@@ -125,9 +125,12 @@ public class MainActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_clear) {
             ClearAll();
-        }
-        if (id == R.id.action_settings) {
+        } else if (id == R.id.action_settings) {
             return true;
+        } else if (id == R.id.action_lock) {
+            toggleOrientationLock();
+        } else if (id == R.id.action_view){
+            // Go to view activity
         }
 
         return super.onOptionsItemSelected(item);
