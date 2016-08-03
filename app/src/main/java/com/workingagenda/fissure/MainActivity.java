@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        //getSupportActionBar().setIcon(R.drawable.ic_launcher);
+        getSupportActionBar().setIcon(R.mipmap.ic_launcher);
         Button btnGen = (Button) findViewById(R.id.generateGIF);
         editTxt = (EditText) findViewById(R.id.titleValue);
         prevImg = (ImageView) findViewById(R.id.preview);
