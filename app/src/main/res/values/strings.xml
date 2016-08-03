@@ -4,4 +4,6 @@
     <string name="pref_compression">Compression</string>
     <string name="pref_repeat">Repeat Indefinitely</string>
     <string name="load_gif">Load</string>
+    <string name="upload_gif">Upload</string>
+    <string name="clear">Reset</string>
 </resources>

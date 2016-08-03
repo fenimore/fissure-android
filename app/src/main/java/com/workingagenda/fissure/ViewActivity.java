@@ -63,6 +63,9 @@ public class ViewActivity  extends AppCompatActivity {
             // load gif
             showFileChooser();
             return true;
+        } else if (id == R.id.action_clear) {
+            WebView webView = (WebView) findViewById(R.id.gifView);
+            webView.loadUrl("about:blank");
         }
         return super.onOptionsItemSelected(item);
     }
@@ -78,10 +81,6 @@ public class ViewActivity  extends AppCompatActivity {
                     //File file = new File(uri.getPath());
                     File tmpFile = new File(Environment.getExternalStorageDirectory() +
                             File.separator + "tmp.jpeg");
-
-                    Log.d("Name: ", tmpFile.getName());
-                    Log.d("path: ", tmpFile.getPath());
-                    Log.d("Size: ", Long.toString(tmpFile.getTotalSpace()));
                     try {
                         tmpFile.createNewFile();
                     } catch (IOException e) {
@@ -108,24 +107,18 @@ public class ViewActivity  extends AppCompatActivity {
                             e.printStackTrace();
                         }
                     }
-                    Log.d("path: ", "file://" + tmpFile.getPath());
-                    Log.d("Size: ", Long.toString(tmpFile.getTotalSpace()));
                     // Construct path and load into Webview
                     String gif = "file://" + tmpFile.getPath();
                     String html = "<body>" + "<img src=\"" + gif + "\"/></body>";
                     WebView webView = (WebView) findViewById(R.id.gifView);
+                    webView.loadUrl("about:blank");
+
                     webView.loadDataWithBaseURL("file://android_asset/", html, "text/html", "utf-8", null);
 
+                    // Delete file on destroy
                     //tmpFile.delete();
 
-                    /*try {
-                        InputStream in = getContentResolver().openInputStream(uri);
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    }
-                    tmpFile.setWritable(true);
-                    OutputStream out = new FileOutputStream(tmpFile);
-                    */
+
                 }
                 break;
         }

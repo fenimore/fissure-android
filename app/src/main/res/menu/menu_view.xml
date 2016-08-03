@@ -6,4 +6,14 @@
         android:title="@string/load_gif"
         app:showAsAction="ifRoom"
         android:icon="@drawable/ic_open_in_browser_white_24dp"/>
+    <item
+        android:id="@+id/action_upload"
+        android:title="@string/upload_gif"
+        app:showAsAction="ifRoom"
+        />
+    <item
+        android:id="@+id/action_reset"
+        android:title="@string/clear"
+        app:showAsAction="ifRoom"
+        />
 </menu>
