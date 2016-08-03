@@ -75,6 +75,8 @@ public class ViewActivity  extends AppCompatActivity {
             return true;
         } else if (id == R.id.action_upload) {
             // TODO: upload to image server?
+            Toast.makeText(this, "Uploads are not implemented yet.",
+                    Toast.LENGTH_SHORT).show();
             return true;
         }
         return super.onOptionsItemSelected(item);

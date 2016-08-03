@@ -6,4 +6,6 @@
     <string name="load_gif">Load</string>
     <string name="upload_gif">Upload</string>
     <string name="clear">Reset</string>
+    <string name="short_instructions">Add a frame with the + sign below.</string>
+    <string name="title_hint">Enter GIF filename, or leave blank</string>
 </resources>

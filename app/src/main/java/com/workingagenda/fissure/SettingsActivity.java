@@ -8,11 +8,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.PreferenceActivity;
-import android.support.v4.app.NavUtils;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatDelegate;
-import android.util.Log;
-import android.view.MenuItem;
 
 /**
  * Created by fen on 8/3/16.

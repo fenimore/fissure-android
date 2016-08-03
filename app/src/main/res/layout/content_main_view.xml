@@ -16,18 +16,18 @@
             />
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="75dp"
             android:id="@+id/preview"/>
     </LinearLayout>
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="myGIF"
+        android:hint="@string/title_hint"
         android:id="@+id/titleValue"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Images by clicking below"
+        android:text="@string/short_instructions"
         android:id="@+id/imageSelections" />
     <ListView
         android:layout_width="wrap_content"

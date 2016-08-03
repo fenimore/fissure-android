@@ -135,8 +135,7 @@ public class MainActivity extends AppCompatActivity {
             case 0:
                 if (resultCode == RESULT_OK) {
                     ListView lv = (ListView) findViewById(R.id.listImage);
-                    // Get the Uri of the selected file
-                    Uri uri = data.getData();
+                    Uri uri = data.getData();// URI, not file, of selected File
                     Bitmap bitmap = null;
                     try {
                         bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
@@ -171,11 +170,12 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    // Return a byte[] which is infact an encoded GIF
+    // Return a byte[] which is in fact an encoded GIF
     public byte[] generateGIF(ArrayList<Bitmap> bitmaps) { // pass in bitmap array
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         AnimatedGifEncoder encoder = new AnimatedGifEncoder();
         encoder.start(bos);
+        // TODO: Check Preferences
         // Repeat setting:must be invoked before adding first image!
         // 0 is indefinite
         encoder.setRepeat(INDEF_REPEAT);
@@ -196,13 +196,13 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("image/*");
         intent.addCategory(Intent.CATEGORY_OPENABLE);
-
+        // TODO: Code proper file manager
         try {
             startActivityForResult(
                     Intent.createChooser(intent, "Select a File to Upload"),
                     0);
         } catch (ActivityNotFoundException ex) {
-            // Potentially direct the user to the Market with a Dialog
+            // Potentially direct the user to the Market with a Dialog?
             Toast.makeText(this, "Please install a File Manager.",
                     Toast.LENGTH_SHORT).show();
         }
@@ -212,7 +212,6 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(ArrayList... params) {
             // Write Gif
-            //if filename != null
             String fn;
             if (filename.isEmpty()){
                 fn = "fissureGif.gif";
@@ -220,8 +219,9 @@ public class MainActivity extends AppCompatActivity {
                 fn = filename.concat(".gif");
             }
             try {
+                // TODO: Save to special Gif folder?
                 FileOutputStream outStream = new FileOutputStream(Environment.getExternalStorageDirectory()
-                        + File.separator + fn);// Environment.DIRECTORY_PICTURES + filename
+                        + File.separator + fn);
                 outStream.write(generateGIF(bitmaps));
 
                 outStream.close();
