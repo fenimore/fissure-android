@@ -141,8 +141,8 @@ public class MainActivity extends AppCompatActivity {
                     Bitmap bitmap = null;
                     try {
                         bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
-                        String size = Integer.toString(bitmap.getAllocationByteCount());
-                        Log.d("Bitmap One Size:", size);
+                        //String size = Integer.toString(bitmap.getAllocationByteCount());
+                        //Log.d("Bitmap One Size:", size);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -162,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
                     BitmapFactory.Options options = new BitmapFactory.Options();
                     options.inSampleSize = SAMPLE_SIZE;
                     options.inJustDecodeBounds = false;
-                    Bitmap bitmap2 = BitmapFactory.decodeFile(tmpFile.getPath(), options);
+                    bitmap = BitmapFactory.decodeFile(tmpFile.getPath(), options);
                     Log.d("tmpFile", tmpFile.getPath());
                     tmpFile.delete();
                     //String size = Integer.toString(bitmap2.getAllocationByteCount());
@@ -237,7 +237,6 @@ public class MainActivity extends AppCompatActivity {
     private class GenerateGif extends AsyncTask<ArrayList, Void, Void> {
         @Override
         protected Void doInBackground(ArrayList... params) {
-            TextView txtStatus = (TextView) findViewById(R.id.gif_status);
             // Write Gif
             //if filename != null
             String fn;
@@ -272,6 +271,10 @@ public class MainActivity extends AppCompatActivity {
         prevImg.setImageResource(android.R.color.transparent);
         Toast.makeText(getBaseContext(), "Reset Data",
                         Toast.LENGTH_SHORT).show();
+    }
+
+    private void toggleOrientationLock() {
+        // if isn't locked, lock
     }
 
 }

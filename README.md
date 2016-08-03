@@ -6,11 +6,13 @@ Sooo this is supposed to be an F/OSS android app which makes gifs on the fly fro
 
 ### Immediate
 1. Select multiple images for bitmaps frames
-2. Enter in File name
-3. Compress files
-3. Clear Bitmaps array
-5. Async gif creation..?
-4. Dynamic gridview of bitmaps
+2. ~~Enter in File name~~
+3  ~~Compress files~~
+4.. ~~Clear Bitmaps array~~
+5. ~~Async gif creation..?~~
+6. Dynamic gridview of bitmaps
+7. Display GIF in webview
+
 
 ### Preferences
 1. Delay defaults
