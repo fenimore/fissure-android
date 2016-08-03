@@ -119,7 +119,8 @@ public class ViewActivity  extends AppCompatActivity {
                     }
                     // Construct path and load into Webview
                     String gif = "file://" + tmpFile.getPath();
-                    String html = "<body>" + "<img src=\"" + gif + "\"/></body>";
+                    String html = "<style>img{display: inline; height: auto; max-width: 100%;}</style>"+
+                            "<body><img src=\"" + gif + "\"/></body>";
                     WebView webView = (WebView) findViewById(R.id.gifView);
                     //webView.loadUrl("about:blank");
                     webView.clearCache(true);
