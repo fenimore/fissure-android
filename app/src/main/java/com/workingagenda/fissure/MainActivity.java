@@ -142,8 +142,6 @@ public class MainActivity extends AppCompatActivity {
                     Bitmap bitmap = null;
                     try {
                         bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
-                        //String size = Integer.toString(bitmap.getAllocationByteCount());
-                        //Log.d("Bitmap One Size:", size);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -165,9 +163,6 @@ public class MainActivity extends AppCompatActivity {
                     bitmap = BitmapFactory.decodeFile(tmpFile.getPath(), options);
                     Log.d("tmpFile", tmpFile.getPath());
                     tmpFile.delete();
-                    //String size = Integer.toString(bitmap2.getAllocationByteCount());
-                    //Log.d("Bitmap Two Size:", size);
-                    // Update Arrays
                     bitmaps.add(bitmap);
                     images.add(uri.getPath());
                     uris.add(uri);

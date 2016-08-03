@@ -50,7 +50,10 @@ public class ViewActivity  extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        tmpFile = new File(Environment.getExternalStorageDirectory() +
+                            File.separator + "tmp.jpeg");
         tmpFile.delete();
+
     }
 
     @Override
@@ -128,6 +131,7 @@ public class ViewActivity  extends AppCompatActivity {
 
                     // Delete file on destroy
                     //tmpFile.delete();
+                    tmpFile.deleteOnExit();
 
 
                 }
