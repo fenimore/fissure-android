@@ -10,10 +10,6 @@
         android:id="@+id/action_upload"
         android:title="@string/upload_gif"
         app:showAsAction="ifRoom"
-        />
-    <item
-        android:id="@+id/action_reset"
-        android:title="@string/clear"
-        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_cloud_upload_white_24dp"
         />
 </menu>

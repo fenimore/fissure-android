@@ -89,11 +89,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 EditText et = (EditText) findViewById(R.id.titleValue);
                 filename = et.getText().toString();
-
-                Log.d("Begin writing gif", "now");
+                // Launch Concurrent GIF generation
                 new GenerateGif().execute(bitmaps);
-                // TOAST
-                Toast.makeText(getBaseContext(), "Writing GIF as ",
+                Toast.makeText(getBaseContext(), "Writing GIF",
                         Toast.LENGTH_SHORT).show();
             }
         });
@@ -217,13 +215,12 @@ public class MainActivity extends AppCompatActivity {
             //if filename != null
             String fn;
             if (filename.isEmpty()){
-                fn = "myAsyncGif.gif";
+                fn = "fissureGif.gif";
             } else {
                 fn = filename.concat(".gif");
             }
-            FileOutputStream outStream = null;
             try {
-                outStream = new FileOutputStream(Environment.getExternalStorageDirectory()
+                FileOutputStream outStream = new FileOutputStream(Environment.getExternalStorageDirectory()
                         + File.separator + fn);// Environment.DIRECTORY_PICTURES + filename
                 outStream.write(generateGIF(bitmaps));
 

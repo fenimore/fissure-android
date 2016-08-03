@@ -71,13 +71,10 @@ public class ViewActivity  extends AppCompatActivity {
         int id = item.getItemId();
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_load) {
-            // load gif
             showFileChooser();
             return true;
-        } else if (id == R.id.action_clear) {
-            WebView webView = (WebView) findViewById(R.id.gifView);
-            webView.clearCache(true);
-            webView.loadUrl("about:blank");
+        } else if (id == R.id.action_upload) {
+            // TODO: upload to image server?
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -90,8 +87,7 @@ public class ViewActivity  extends AppCompatActivity {
                     byte[] imageData = new byte[chunkSize];
                     // Load image
                     Uri uri = data.getData();
-
-                    //File file = new File(uri.getPath());
+                    // Create a tmp file for the compression
                     tmpFile = new File(Environment.getExternalStorageDirectory() +
                             File.separator + "tmp.jpeg");
                     try {
@@ -122,28 +118,17 @@ public class ViewActivity  extends AppCompatActivity {
                     }
                     // Construct path and load into Webview
                     String gif = "file://" + tmpFile.getPath();
-                    String html = "<style>img{display: inline; height: auto; max-width: 100%;}</style>"+
-                            "<body><img src=\"" + gif + "\"/></body>";
+                    // TODO: Create padding
+                    String html = "<style>img{padding-top:5%;display: inline; height: auto; max-width: 100%;}"+
+                            "</style><body><img src=\"" + gif + "\"/></body>";
                     WebView webView = (WebView) findViewById(R.id.gifView);
-                    //webView.loadUrl("about:blank");
-                    webView.clearCache(true);
+                    webView.clearCache(true); // For changing the view, figuratively
                     webView.loadDataWithBaseURL("file://android_asset/", html, "text/html", "utf-8", null);
-
-                    // Delete file on destroy
-                    //tmpFile.delete();
-                    tmpFile.deleteOnExit();
-
-
+                    // tmpFile deletes onDestroy()
                 }
                 break;
         }
         super.onActivityResult(requestCode, resultCode, data);
-
-
-    }
-
-    private void loadGIF() {
-
     }
 
     private void showFileChooser() {

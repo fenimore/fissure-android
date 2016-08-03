@@ -11,7 +11,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/generateGIF"
-            android:text="Generate"/>
+            android:drawableLeft="@drawable/ic_gif_black_24dp"
+            android:text="Generate"
+            />
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="50dp"
