@@ -128,7 +128,8 @@ public class MainActivity extends AppCompatActivity {
             toggleOrientationLock();
             return true;
         } else if (id == R.id.action_view){
-            // Go to view activity
+            Intent intent = new Intent(this, ViewActivity.class);
+            startActivity(intent);
             return true;
         }
         return super.onOptionsItemSelected(item);
