@@ -11,13 +11,13 @@
         android:icon="@drawable/ic_remove_red_eye_white_24dp"/>
     <item
         android:id="@+id/action_clear"
-        android:orderInCategory="100"
+        android:orderInCategory="200"
         android:title="Clear"
         app:showAsAction="ifRoom"
         android:icon="@drawable/ic_cached_white_24dp"/>
     <item
         android:id="@+id/action_settings"
-        android:orderInCategory="200"
+        android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="ifRoom"
         android:icon="@drawable/ic_settings_white_24dp"/>
