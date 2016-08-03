@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     int COMPRESSION = 30; // not a big diff eh?
     int SAMPLE_SIZE = 3; // ?? unclear to me...
     int INDEF_REPEAT = 0;
-    int DELAY = 1000; // milliseconds
+    int DELAY = 500; // milliseconds
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -187,9 +187,8 @@ public class MainActivity extends AppCompatActivity {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         AnimatedGifEncoder encoder = new AnimatedGifEncoder();
         encoder.start(bos);
-        // Repeat setting:
+        // Repeat setting:must be invoked before adding first image!
         // 0 is indefinite
-        // must be invoked before adding first image!
         encoder.setRepeat(INDEF_REPEAT);
         // Delay settings:
         // I dunno

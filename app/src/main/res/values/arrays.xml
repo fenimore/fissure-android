@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="pref_compressions_alias">
+        <item>20 - Low</item>
+        <item>40 - Medium</item>
+        <item>60 - High</item>
+        <item>85 - Full</item></string-array>
+    <integer-array name="pref_compressions">
+        <item>20</item>
+        <item>40</item>
+        <item>60</item>
+        <item>85</item></integer-array>
+</resources>

@@ -12,7 +12,11 @@ Sooo this is supposed to be an F/OSS android app which makes gifs on the fly fro
 5. ~~Async gif creation..?~~
 6. Dynamic gridview of bitmaps
 7. Display GIF in webview
-
+8. Preferences
+ - file default name
+ - compression
+ - sample size
+ - Repeat
 
 ### Preferences
 1. Delay defaults
