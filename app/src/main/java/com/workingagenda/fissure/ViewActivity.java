@@ -35,6 +35,7 @@ import java.util.Arrays;
  * Created by fen on 8/3/16.
  */
 public class ViewActivity  extends AppCompatActivity {
+    File tmpFile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,13 @@ public class ViewActivity  extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        tmpFile.delete();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -65,7 +73,9 @@ public class ViewActivity  extends AppCompatActivity {
             return true;
         } else if (id == R.id.action_clear) {
             WebView webView = (WebView) findViewById(R.id.gifView);
+            webView.clearCache(true);
             webView.loadUrl("about:blank");
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -79,7 +89,7 @@ public class ViewActivity  extends AppCompatActivity {
                     Uri uri = data.getData();
 
                     //File file = new File(uri.getPath());
-                    File tmpFile = new File(Environment.getExternalStorageDirectory() +
+                    tmpFile = new File(Environment.getExternalStorageDirectory() +
                             File.separator + "tmp.jpeg");
                     try {
                         tmpFile.createNewFile();
@@ -111,8 +121,8 @@ public class ViewActivity  extends AppCompatActivity {
                     String gif = "file://" + tmpFile.getPath();
                     String html = "<body>" + "<img src=\"" + gif + "\"/></body>";
                     WebView webView = (WebView) findViewById(R.id.gifView);
-                    webView.loadUrl("about:blank");
-
+                    //webView.loadUrl("about:blank");
+                    webView.clearCache(true);
                     webView.loadDataWithBaseURL("file://android_asset/", html, "text/html", "utf-8", null);
 
                     // Delete file on destroy
@@ -123,6 +133,8 @@ public class ViewActivity  extends AppCompatActivity {
                 break;
         }
         super.onActivityResult(requestCode, resultCode, data);
+
+
     }
 
     private void loadGIF() {
