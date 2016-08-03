@@ -132,7 +132,6 @@ public class MainActivity extends AppCompatActivity {
         } else if (id == R.id.action_view){
             // Go to view activity
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -265,7 +264,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
     }
     private void toggleOrientationLock() {
-        // if isn't locked, lock
+        // TODO: Doesn't work?
         // Check if locked
         int isLocked = android.provider.Settings.System.getInt(
                 getContentResolver(),

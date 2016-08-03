@@ -28,4 +28,10 @@
         app:showAsAction="ifRoom"
         android:icon="@drawable/ic_screen_lock_rotation_white_24dp"
         />
+    <item
+        android:id="@+id/action_instructions"
+        android:orderInCategory="400"
+        android:title="Instructions"
+        app:showAsAction="never"
+        />
 </menu>
