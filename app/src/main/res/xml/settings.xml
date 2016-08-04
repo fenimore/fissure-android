@@ -1,38 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <CheckBoxPreference
-        android:key="pref_repeat"
-        android:title="@string/pref_repeat"
-        android:summary="@string/pref_repeat_summary"
-        android:defaultValue="true" />
-    <EditTextPreference
-        android:title="@string/pref_default_title"
-        android:key="pref_default_title"
-        android:defaultValue="fissureGIF"/>
-    <com.workingagenda.fissure.PrefHelper.NumberPickerPreference
-        android:title="@string/pref_compression"
-        android:key="pref_compression"
-        android:summary="@string/pref_compression_summary"
-        android:defaultValue="30"
-        />
-    <com.workingagenda.fissure.PrefHelper.DelayPickerPreference
-        android:title="@string/pref_delay"
-        android:summary="@string/pref_delay_summary"
-        android:key="pref_delay"
-        android:defaultValue="500"
-        />
-
-    <Preference
-        android:key="pref_static_field_key0"
-        android:selectable="false"
-        android:title="Application Version"
-        android:summary="Fissure GIF 0.1.0"/>
-    <Preference
-        android:key="pref_static_field_key1"
-        android:selectable="false"
-        android:title="Software License"
-        android:summary="Apache"/>
-
+    <PreferenceCategory android:title="@string/pref_gif_category">
+        <CheckBoxPreference
+            android:key="pref_repeat"
+            android:title="@string/pref_repeat"
+            android:summary="@string/pref_repeat_summary"
+            android:defaultValue="true" />
+        <EditTextPreference
+            android:title="@string/pref_default_title"
+            android:key="pref_default_title"
+            android:defaultValue="fissureGIF"/>
+        <com.workingagenda.fissure.PrefHelper.NumberPickerPreference
+            android:title="@string/pref_compression"
+            android:key="pref_compression"
+            android:summary="@string/pref_compression_summary"
+            android:defaultValue="30"
+            />
+        <com.workingagenda.fissure.PrefHelper.DelayPickerPreference
+            android:title="@string/pref_delay"
+            android:summary="@string/pref_delay_summary"
+            android:key="pref_delay"
+            android:defaultValue="500"
+            />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/pref_app_category">
+        <Preference
+            android:key="pref_static_field_key0"
+            android:selectable="false"
+            android:title="Application Version"
+            android:summary="Fissure GIF 0.1.0"/>
+        <Preference
+            android:key="pref_static_field_key1"
+            android:selectable="false"
+            android:title="Software License"
+            android:summary="Apache"/>
+    </PreferenceCategory>
 
 </PreferenceScreen>

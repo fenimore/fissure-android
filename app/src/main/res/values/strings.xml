@@ -13,4 +13,6 @@
     <string name="pref_default_title">Default GIF Filename</string>
     <string name="pref_delay_summary">Frame switch in milliseconds</string>
     <string name="pref_delay">Delay Between Frames</string>
+    <string name="pref_gif_category">GIF Generation</string>
+    <string name="pref_app_category">Application Information</string>
 </resources>

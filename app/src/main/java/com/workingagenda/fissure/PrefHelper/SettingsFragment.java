@@ -13,6 +13,7 @@ import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
+import android.support.v7.app.AppCompatDelegate;
 
 import com.workingagenda.fissure.PrefHelper.NumberPickerPreference;
 import com.workingagenda.fissure.R;
@@ -24,7 +25,6 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
     private CheckBoxPreference mCheckBox;
     private EditTextPreference mEditText;
     private NumberPickerPreference mNumberPicker;
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
