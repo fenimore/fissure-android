@@ -10,6 +10,7 @@
         android:minHeight="?attr/actionBarSize"
         android:background="?attr/colorPrimary" />
     <ListView
+        android:layout_marginTop="?attr/actionBarSize"
         android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

@@ -16,7 +16,7 @@ import com.workingagenda.fissure.R;
 /**
  * Created by fen on 8/3/16.
  */
-public class SettingsActivity extends PreferenceActivity {
+public class SettingsActivity extends AppCompatActivity {
     private AppCompatDelegate mDelegate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +26,8 @@ public class SettingsActivity extends PreferenceActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // Display the fragment as the main content.
         getFragmentManager().beginTransaction()
                 .replace(android.R.id.content, new SettingsFragment())
@@ -60,11 +62,11 @@ public class SettingsActivity extends PreferenceActivity {
         super.onDestroy();
         getDelegate().onDestroy();
     }
-    private void setSupportActionBar(@Nullable Toolbar toolbar) {
+    public void setSupportActionBar(@Nullable Toolbar toolbar) {
         getDelegate().setSupportActionBar(toolbar);
     }
 
-    private AppCompatDelegate getDelegate() {
+    public AppCompatDelegate getDelegate() {
         if (mDelegate == null) {
             mDelegate = AppCompatDelegate.create(this, null);
         }
