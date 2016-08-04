@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <CheckBoxPreference
         android:key="pref_repeat"
@@ -21,5 +22,17 @@
         android:key="pref_delay"
         android:defaultValue="500"
         />
+
+    <Preference
+        android:key="pref_static_field_key0"
+        android:selectable="false"
+        android:title="Application Version"
+        android:summary="Fissure GIF 0.1.0"/>
+    <Preference
+        android:key="pref_static_field_key1"
+        android:selectable="false"
+        android:title="Software License"
+        android:summary="Apache"/>
+
 
 </PreferenceScreen>
