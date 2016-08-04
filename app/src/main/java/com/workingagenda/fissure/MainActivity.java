@@ -70,12 +70,10 @@ public class MainActivity extends AppCompatActivity {
             REPEAT = 2;
         }
 
-
-
         // ActionBar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setIcon(R.mipmap.ic_launcher_new);
+        getSupportActionBar().setIcon(R.drawable.ic_fissure_logo_white);
 
         // Views
         Button btnGen = (Button) findViewById(R.id.generateGIF);

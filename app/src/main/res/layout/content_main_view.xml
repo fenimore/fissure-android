@@ -2,8 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <LinearLayout
+    <EditText
         android:layout_marginTop="?attr/actionBarSize"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/title_hint"
+        android:id="@+id/titleValue"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/short_instructions"
+        android:id="@+id/imageSelections" />
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -19,16 +29,7 @@
             android:layout_height="75dp"
             android:id="@+id/preview"/>
     </LinearLayout>
-    <EditText
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/title_hint"
-        android:id="@+id/titleValue"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/short_instructions"
-        android:id="@+id/imageSelections" />
+
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
