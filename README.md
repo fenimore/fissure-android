@@ -16,5 +16,5 @@ An Android App I whipped up for generating and viewing GIFs. It works...
 10. Screen Lock?
 11. Make the listview have decent names of the selected frames
 12. Delete individual frames from listview
-2. create gif folder?
+13. Share button
 

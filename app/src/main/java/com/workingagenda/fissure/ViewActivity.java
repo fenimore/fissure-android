@@ -8,6 +8,7 @@ import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -16,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebView;
 import android.widget.ImageView;
+import android.widget.ShareActionProvider;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -35,7 +37,7 @@ import java.util.Arrays;
  * Created by fen on 8/3/16.
  */
 public class ViewActivity  extends AppCompatActivity {
-    File tmpFile;
+    private File tmpFile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +80,9 @@ public class ViewActivity  extends AppCompatActivity {
             Toast.makeText(this, "Uploads are not implemented yet.",
                     Toast.LENGTH_SHORT).show();
             return true;
+        } else if (id == R.id.action_share) {
+            Toast.makeText(this, "Sharing is not implemented yet.",
+                    Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
     }
