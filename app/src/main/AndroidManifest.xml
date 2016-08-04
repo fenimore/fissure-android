@@ -23,7 +23,7 @@
         </activity>
         <activity
             android:name=".PrefHelper.SettingsActivity"
-            android:label="Preferences"
+            android:label="@string/preference_activity_title"
             android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".MainActivity">
             <meta-data
@@ -32,7 +32,16 @@
         </activity>
         <activity
             android:name=".ViewActivity"
-            android:label="GIF Viewer"
+            android:label="@string/view_activity_title"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.workingagenda.fissure.MainActivity" />
+        </activity>
+        <activity
+            android:name=".InstructionsActivity"
+            android:label="@string/instructions_activity_title"
             android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".MainActivity">
             <meta-data

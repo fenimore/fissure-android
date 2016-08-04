@@ -18,4 +18,8 @@
     <string name="remove">Remove</string>
     <string name="image_options">Image Options</string>
     <string name="share_gif">Share</string>
+    <string name="view_activity_title">GIF Viewer</string>
+    <string name="preference_activity_title">Preferences</string>
+    <string name="instructions_activity_title">Instructions</string>
+    <string name="source">Source Code</string>
 </resources>
