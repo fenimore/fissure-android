@@ -8,7 +8,9 @@
     <string name="clear">Reset</string>
     <string name="short_instructions">Add a frame with the  +  sign below.</string>
     <string name="title_hint">Enter GIF filename, or leave blank</string>
-    <string name="pref_repeat_summary">Otherwise, run once and stop</string>
-    <string name="pref_compression_summary">Compression Quality</string>
+    <string name="pref_repeat_summary">Otherwise, run twice and stop</string>
+    <string name="pref_compression_summary">Higher quality will significantly increase size</string>
     <string name="pref_default_title">Default GIF Filename</string>
+    <string name="pref_delay_summary">Frame switch in milliseconds</string>
+    <string name="pref_delay">Delay Between Frames</string>
 </resources>

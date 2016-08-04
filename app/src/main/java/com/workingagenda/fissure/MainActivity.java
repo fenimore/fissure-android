@@ -48,18 +48,36 @@ public class MainActivity extends AppCompatActivity {
     ImageView prevImg;
     String filename;
 
-    int COMPRESSION = 30; // not a big diff eh?
-    int SAMPLE_SIZE = 3; // ?? unclear to me...
-    int INDEF_REPEAT = 0;
-    int DELAY = 500; // milliseconds
+    private String DEFAULT_TITLE;
+    private int COMPRESSION; // not a big diff eh?
+    private int SAMPLE_SIZE = 3; // ?? unclear to me...
+    private int REPEAT;
+    private int DELAY; // milliseconds
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Settings
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        DEFAULT_TITLE = sharedPreferences.getString("pref_default_title", "fissureGIF");
+        COMPRESSION = Integer.valueOf(sharedPreferences.getString("pref_compression", "30"));
+        DELAY = Integer.valueOf(sharedPreferences.getString("pref_delay", "500"));
+        if (sharedPreferences.getBoolean("pref_repeat", true)) {
+            REPEAT = 0; // 0 is indefinite
+        } else {
+            REPEAT = 2;
+        }
+
+
+
+        // ActionBar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setIcon(R.mipmap.ic_launcher_new);
+
+        // Views
         Button btnGen = (Button) findViewById(R.id.generateGIF);
         editTxt = (EditText) findViewById(R.id.titleValue);
         prevImg = (ImageView) findViewById(R.id.preview);
@@ -100,11 +118,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String defaultTitle = sharedPreferences.getString("pref_default_title", "fissureGIF");
-        String compression = sharedPreferences.getString("pref_compression", "20");
-        Log.d("Pref test", defaultTitle);
-        Log.d("Pref Compression", compression);
+
     }
 
     @Override
@@ -179,18 +193,23 @@ public class MainActivity extends AppCompatActivity {
 
     // Return a byte[] which is in fact an encoded GIF
     public byte[] generateGIF(ArrayList<Bitmap> bitmaps) { // pass in bitmap array
+        // Preferences
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        COMPRESSION = Integer.valueOf(sharedPreferences.getString("pref_compression", "30"));
+        DELAY = Integer.valueOf(sharedPreferences.getString("pref_delay", "500"));
+        if (sharedPreferences.getBoolean("pref_repeat", true)) {
+            REPEAT = 0; // 0 is indefinite
+        } else {
+            REPEAT = 2;
+        }
+        // Encode Gif from bitmap frames
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         AnimatedGifEncoder encoder = new AnimatedGifEncoder();
         encoder.start(bos);
-        // TODO: Check Preferences
-        // Repeat setting:must be invoked before adding first image!
-        // 0 is indefinite
-        encoder.setRepeat(INDEF_REPEAT);
-        // Delay settings:
-        // I dunno
+        // Settings must be invoked before adding first image!
+        encoder.setRepeat(REPEAT);
         encoder.setDelay(DELAY);
-        // Size Settings:
-        // I dunno
+        // TODO: Size
         for (Bitmap bitmap : bitmaps) {
             encoder.addFrame(bitmap);
         }
@@ -221,11 +240,12 @@ public class MainActivity extends AppCompatActivity {
             // Write Gif
             String fn;
             if (filename.isEmpty()){
-                fn = "fissureGif";
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+                DEFAULT_TITLE = sharedPreferences.getString("pref_default_title", "fissureGIF");
+                fn = DEFAULT_TITLE.concat(".gif");;
             } else {
-                fn = filename;
+                fn = filename.concat(".gif");;
             }
-            fn.concat(".gif");
             try {
                 // TODO: Save to special Gif folder?
                 FileOutputStream outStream = new FileOutputStream(Environment.getExternalStorageDirectory()

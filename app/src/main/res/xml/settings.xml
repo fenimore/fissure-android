@@ -12,7 +12,14 @@
     <com.workingagenda.fissure.PrefHelper.NumberPickerPreference
         android:title="@string/pref_compression"
         android:key="pref_compression"
-        android:defaultValue="20"
+        android:summary="@string/pref_compression_summary"
+        android:defaultValue="30"
+        />
+    <com.workingagenda.fissure.PrefHelper.DelayPickerPreference
+        android:title="@string/pref_delay"
+        android:summary="@string/pref_delay_summary"
+        android:key="pref_delay"
+        android:defaultValue="500"
         />
 
 </PreferenceScreen>
