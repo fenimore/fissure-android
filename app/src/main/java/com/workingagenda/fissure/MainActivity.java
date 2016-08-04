@@ -61,6 +61,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Create GIF folder if it doesn't exit
+        //File gifDir = new File(Environment.DIRECTORY_PICTURES + File.separator +"gifs");
+        //if(!gifDir.exists()) gifDir.mkdir();
+
         // Settings
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         DEFAULT_TITLE = sharedPreferences.getString("pref_default_title", "fissureGIF");
@@ -299,7 +303,7 @@ public class MainActivity extends AppCompatActivity {
         bitmaps.remove(pos);
         uris.remove(pos);
         images.remove(pos);
-        adapter.notifyDataSetChanged(); 
+        adapter.notifyDataSetChanged();
     }
 
     private void ClearAll() {

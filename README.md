@@ -27,3 +27,8 @@ An Android App I whipped up for generating and viewing GIFs. It works...
 13. Share button
 14. Upload
 15. Translation
+
+### Instructions
+- Must be JPG
+- Beware massive file size (and email limits :S)
+- Long Click for the context menu/ remove items from lists
