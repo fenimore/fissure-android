@@ -2,6 +2,7 @@ package com.workingagenda.fissure;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
@@ -10,6 +11,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
@@ -97,6 +99,12 @@ public class MainActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
             }
         });
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String defaultTitle = sharedPreferences.getString("pref_default_title", "fissureGIF");
+        String compression = sharedPreferences.getString("pref_compression", "20");
+        Log.d("Pref test", defaultTitle);
+        Log.d("Pref Compression", compression);
     }
 
     @Override

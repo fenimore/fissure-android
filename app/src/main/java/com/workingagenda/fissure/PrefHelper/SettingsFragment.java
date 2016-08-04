@@ -36,15 +36,13 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         mCheckBox = (CheckBoxPreference) findPreference("pref_repeat");
         mEditText = (EditTextPreference) findPreference("pre_default_title");
         mNumberPicker = (NumberPickerPreference) findPreference("pref_compression");
-        //mNumberPicker.setSummary(mNumberPicker.get);
-        
-
-
 
     }
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        mNumberPicker.setSummary(sharedPreferences.getString("pref_compression", "20"));
+        mEditText.setSummary(sharedPreferences.getString("pref_default_title", "fissureGIF"));
     }
 
 
