@@ -19,7 +19,9 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -83,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
         // List view of images?
         images = new ArrayList<>();
         ListView lv = (ListView) findViewById(R.id.listImage);
+        registerForContextMenu(lv);
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, images);
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -148,6 +151,35 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        /*
+        FOR LONG CLICKS (For my future reference...
+        Must register list view for CONTEXT MENU
+        and then implement these two override methods
+         */
+        super.onCreateContextMenu(menu, v, menuInfo);
+        if (v.getId()== R.id.listImage) {
+            MenuInflater inflater = new MenuInflater(this);
+            menu.setHeaderTitle(R.string.image_options);
+            inflater.inflate(R.menu.menu_context, menu);
+        }
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        // TODO: Move Item in list
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        if (item.getItemId() == R.id.action_remove) {
+            RemoveItem(info.position);
+            return true;
+        } else {
+            return super.onContextItemSelected(item);
+        }
+
+
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
             case 0:
@@ -180,7 +212,8 @@ public class MainActivity extends AppCompatActivity {
                     tmpFile.delete();
                     bitmaps.add(bitmap);
                     // TODO: FILE name?
-                    images.add(uri.getPath());
+                    String[] imageId = uri.getPath().split(":");
+                    images.add("Preview Image: "+ imageId[imageId.length-1]);
                     uris.add(uri);
                     ((ArrayAdapter) lv.getAdapter()).notifyDataSetChanged();
                 }
@@ -260,6 +293,13 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(Void a) {
             NotifyWroteGIF();
         }
+    }
+
+    private void RemoveItem(int pos) {
+        bitmaps.remove(pos);
+        uris.remove(pos);
+        images.remove(pos);
+        adapter.notifyDataSetChanged(); 
     }
 
     private void ClearAll() {

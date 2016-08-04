@@ -15,4 +15,6 @@
     <string name="pref_delay">Delay Between Frames</string>
     <string name="pref_gif_category">GIF Generation</string>
     <string name="pref_app_category">Application Information</string>
+    <string name="remove">Remove</string>
+    <string name="image_options">Image Options</string>
 </resources>
