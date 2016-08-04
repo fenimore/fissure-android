@@ -3,7 +3,16 @@
     <CheckBoxPreference
         android:key="pref_repeat"
         android:title="@string/pref_repeat"
-        android:summary="Otherwise, run once and stop"
+        android:summary="@string/pref_repeat_summary"
         android:defaultValue="true" />
+    <EditTextPreference
+        android:title="@string/pref_default_title"
+        android:key="pref_default_title"
+        android:defaultValue="fissureGIF"/>
+    <com.workingagenda.fissure.PrefHelper.NumberPickerPreference
+        android:title="@string/pref_compression"
+        android:key="pref_compression"
+        android:defaultValue="20"
+        />
 
 </PreferenceScreen>

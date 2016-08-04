@@ -28,6 +28,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.workingagenda.fissure.PrefHelper.SettingsActivity;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -211,10 +213,11 @@ public class MainActivity extends AppCompatActivity {
             // Write Gif
             String fn;
             if (filename.isEmpty()){
-                fn = "fissureGif.gif";
+                fn = "fissureGif";
             } else {
-                fn = filename.concat(".gif");
+                fn = filename;
             }
+            fn.concat(".gif");
             try {
                 // TODO: Save to special Gif folder?
                 FileOutputStream outStream = new FileOutputStream(Environment.getExternalStorageDirectory()

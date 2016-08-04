@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SettingsActivity"
+            android:name=".PrefHelper.SettingsActivity"
             android:label="Preferences"
             android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".MainActivity">
