@@ -3,7 +3,7 @@
 
     <item
         android:id="@+id/action_source"
-        android:orderInCategory="100"
+        android:orderInCategory="0"
         android:title="@string/source"
         android:showAsAction="ifRoom"
         android:icon="@drawable/ic_code_white_24dp"/>
