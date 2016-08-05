@@ -13,9 +13,17 @@ An Android App I whipped up for generating and viewing GIFs.
 6. ~~Hide N/A Menu Items~~
 7. ~~Instructions Activity~~
 8. French Translation
-8.~~ Async Progress animations~~
+8. ~~ Async Progress animations~~
+9. Better icon?
+
+### Soon
+- Lock?
+- Source in Preference not Instructions
+- Spannable text for add with + symbol
+
 
 ### Eventually
+1. Multiple File select
 6. Dynamic gridview of bitmaps
 2. Fancy ListView
 8. Preferences

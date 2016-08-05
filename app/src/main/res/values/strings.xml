@@ -27,7 +27,8 @@
     <string name="title_interface">User Interface</string>
     <string name="app_intro">This application is a simple utility for creating and viewing GIF
         files on an Android phone or tablet.</string>
-    <string name="user_interface">Click on the plus sign on the lower right hand side
+    <string name="user_interface">You\'ll need an external File Manager application.\nClick
+        on the plus sign on the lower right hand side
         to add JPG images one at a time.\nIf left blank, the GIF filename will be defined by Preferences.\nClick
         on an Image ID to view it\s preview.\nLong click an Image ID to remove it from the list.
     </string>
