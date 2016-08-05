@@ -12,6 +12,7 @@
         android:minHeight="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
         app:popupTheme="@style/AppTheme.PopupOverlay"
+        android:layout_marginBottom="?attr/actionBarSize"
         />
     <ListView
         android:layout_marginTop="?attr/actionBarSize"

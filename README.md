@@ -13,7 +13,7 @@ An Android App I whipped up for generating and viewing GIFs.
 6. ~~Hide N/A Menu Items~~
 7. ~~Instructions Activity~~
 8. French Translation
-8. ~~ Async Progress animations~~
+8. ~~Async Progress animations~~
 9. Better icon?
 
 ### Soon
