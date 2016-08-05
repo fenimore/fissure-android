@@ -16,21 +16,16 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebView;
-import android.widget.ImageView;
-import android.widget.ShareActionProvider;
+
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.URI;
-import java.net.URISyntaxException;
+
 import java.util.Arrays;
 
 /**
