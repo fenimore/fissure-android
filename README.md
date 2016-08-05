@@ -1,5 +1,5 @@
 # fissure-android
-An Android App I whipped up for generating and viewing GIFs. It works...
+An Android App I whipped up for generating and viewing GIFs. 
 
 
 ## Roadmap
@@ -13,7 +13,7 @@ An Android App I whipped up for generating and viewing GIFs. It works...
 6. ~~Hide N/A Menu Items~~
 7. ~~Instructions Activity~~
 8. French Translation
-8. Async Progress animations
+8.~~ Async Progress animations~~
 
 ### Eventually
 6. Dynamic gridview of bitmaps
@@ -29,7 +29,3 @@ An Android App I whipped up for generating and viewing GIFs. It works...
 14. Upload
 15. Translation
 
-### Instructions
-- Must be JPG
-- Beware massive file size (and email limits :S)
-- Long Click for the context menu/ remove items from lists

@@ -4,13 +4,6 @@
     android:layout_height="match_parent"
     android:layout_marginTop="?attr/actionBarSize"
     >
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:minHeight="20dip"
-        android:maxHeight="20dip"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        style="@android:style/Widget.Holo.Light.ProgressBar.Large"/>
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -35,12 +28,25 @@
             android:drawableLeft="@drawable/ic_gif_black_24dp"
             android:text="@string/generate_btn"
             android:layout_marginLeft="10dp" />
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:minHeight="20dip"
+            android:maxHeight="40dip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@android:style/Widget.Material.Light.ProgressBar.Large"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="75dp"
             android:id="@+id/preview"/>
     </LinearLayout>
-
+    <TextView
+        android:id="@+id/title_images"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/title_images"
+        style="?android:attr/listSeparatorTextViewStyle"
+        />
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

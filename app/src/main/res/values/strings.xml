@@ -37,4 +37,5 @@
         planning on sharing a GIF, try to keep it\'s compression below 85, and well below that
         if the amount of frames exceeds 5.</string>
     <string name="generate_btn">Generate</string>
+    <string name="title_images">GIF Frames:</string>
 </resources>
