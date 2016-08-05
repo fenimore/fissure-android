@@ -66,7 +66,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Create GIF folder if it doesn't exit
-        GIF_DIR = new File(Environment.getExternalStorageDirectory() + File.separator + Environment.DIRECTORY_PICTURES + File.separator +"gifs");
+        GIF_DIR = new File(Environment.getExternalStorageDirectory() + File.separator +
+                Environment.DIRECTORY_PICTURES + File.separator +"Gifs");
         if(!GIF_DIR.exists()) GIF_DIR.mkdir();
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
