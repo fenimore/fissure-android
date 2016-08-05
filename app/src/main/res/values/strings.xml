@@ -38,4 +38,10 @@
         if the amount of frames exceeds 5.</string>
     <string name="generate_btn">Generate</string>
     <string name="title_images">GIF Frames:</string>
+    <string name="app_version_title">Application Version</string>
+    <string name="license_title">License</string>
+    <string name="author_title">Author</string>
+    <string name="app_version">Fissure GIF 0.1.0</string>
+    <string name="license">Apache v2</string>
+    <string name="author">Fenimore Love</string>
 </resources>

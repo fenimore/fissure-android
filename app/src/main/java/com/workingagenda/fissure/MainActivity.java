@@ -141,6 +141,8 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         if (id == R.id.action_clear) {
             ClearAll();
+            Toast.makeText(getBaseContext(), "Reset Data",
+                    Toast.LENGTH_SHORT).show();
             return true;
         } else if (id == R.id.action_settings) {
             Intent intent = new Intent(this, SettingsActivity.class);
@@ -337,8 +339,6 @@ public class MainActivity extends AppCompatActivity {
         images.clear();
         adapter.clear();
         prevImg.setImageResource(android.R.color.transparent);
-        Toast.makeText(getBaseContext(), "Reset Data",
-                        Toast.LENGTH_SHORT).show();
     }
 
     private void NotifyWroteGIF() {

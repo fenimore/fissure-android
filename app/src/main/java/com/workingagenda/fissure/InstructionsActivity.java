@@ -1,5 +1,7 @@
 package com.workingagenda.fissure;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -42,7 +44,9 @@ public class InstructionsActivity extends AppCompatActivity {
         int id = item.getItemId();
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_source) {
-            // Intent source code
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("https://github.com/polypmer/fissure-android"));
+            startActivity(browserIntent);
             return true;
         }
         return super.onOptionsItemSelected(item);

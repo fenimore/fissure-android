@@ -6,7 +6,8 @@
             android:key="pref_repeat"
             android:title="@string/pref_repeat"
             android:summary="@string/pref_repeat_summary"
-            android:defaultValue="true" />
+            android:defaultValue="true"
+            />
         <EditTextPreference
             android:title="@string/pref_default_title"
             android:key="pref_default_title"
@@ -28,13 +29,18 @@
         <Preference
             android:key="pref_static_field_key0"
             android:selectable="false"
-            android:title="Application Version"
-            android:summary="Fissure GIF 0.1.0"/>
+            android:title="@string/app_version_title"
+            android:summary="@string/app_version"/>
         <Preference
             android:key="pref_static_field_key1"
             android:selectable="false"
-            android:title="Software License"
-            android:summary="Apache"/>
+            android:title="@string/license_title"
+            android:summary="@string/license"/>
+        <Preference
+            android:key="pref_static_field_key1"
+            android:selectable="false"
+            android:title="@string/author_title"
+            android:summary="@string/author"/>
     </PreferenceCategory>
 
 </PreferenceScreen>
