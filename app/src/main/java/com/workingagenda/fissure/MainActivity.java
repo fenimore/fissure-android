@@ -52,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
     String filename;
     private ProgressBar progressBar;
 
+    private File GIF_DIR;
+
     private String DEFAULT_TITLE;
     private int COMPRESSION; // not a big diff eh?
     private int SAMPLE_SIZE = 3; // ?? unclear to me...
@@ -64,8 +66,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Create GIF folder if it doesn't exit
-        File gifDir = new File(Environment.getExternalStorageDirectory() + File.separator + Environment.DIRECTORY_PICTURES + File.separator +"gifs");
-        if(!gifDir.exists()) gifDir.mkdir();
+        GIF_DIR = new File(Environment.getExternalStorageDirectory() + File.separator + Environment.DIRECTORY_PICTURES + File.separator +"gifs");
+        if(!GIF_DIR.exists()) GIF_DIR.mkdir();
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
@@ -292,8 +294,7 @@ public class MainActivity extends AppCompatActivity {
             }
             try {
                 // TODO: Save to special Gif folder?
-                FileOutputStream outStream = new FileOutputStream(Environment.getExternalStorageDirectory()
-                        + File.separator + fn);
+                FileOutputStream outStream = new FileOutputStream(GIF_DIR + File.separator + fn);
                 outStream.write(generateGIF(bitmaps));
 
                 outStream.close();
