@@ -30,6 +30,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.workingagenda.fissure.PrefHelper.SettingsActivity;
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
     EditText editTxt;
     ImageView prevImg;
     String filename;
+    private ProgressBar progressBar;
 
     private String DEFAULT_TITLE;
     private int COMPRESSION; // not a big diff eh?
@@ -65,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
         //File gifDir = new File(Environment.DIRECTORY_PICTURES + File.separator +"gifs");
         //if(!gifDir.exists()) gifDir.mkdir();
 
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.GONE);
         // Settings
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         DEFAULT_TITLE = sharedPreferences.getString("pref_default_title", "fissureGIF");
@@ -116,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 EditText et = (EditText) findViewById(R.id.titleValue);
                 filename = et.getText().toString();
+
                 // Launch Concurrent GIF generation
                 new GenerateGif().execute(bitmaps);
             }
@@ -270,7 +275,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private class GenerateGif extends AsyncTask<ArrayList, Void, Void> {
+    private class GenerateGif extends AsyncTask<ArrayList, Integer, Void> {
         // Second param is Progress
         @Override
         protected Void doInBackground(ArrayList... params) {
@@ -279,9 +284,9 @@ public class MainActivity extends AppCompatActivity {
             if (filename.isEmpty()){
                 SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
                 DEFAULT_TITLE = sharedPreferences.getString("pref_default_title", "fissureGIF");
-                fn = DEFAULT_TITLE.concat(".gif");;
+                fn = DEFAULT_TITLE.concat(".gif");
             } else {
-                fn = filename.concat(".gif");;
+                fn = filename.concat(".gif");
             }
             try {
                 // TODO: Save to special Gif folder?
@@ -297,13 +302,24 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
+        protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate(values);
+            // TODO: Somethin' pretty
+            //progressBar.setProgress(values[0]);
+        }
+
+        @Override
         protected void onPreExecute() {
             super.onPreExecute();
             Toast.makeText(getBaseContext(), "Writing GIF",
                     Toast.LENGTH_SHORT).show();
+            //progressBar.setMax(10);
+            progressBar.setVisibility(View.VISIBLE);
+            //progressBar.setProgress(0);
         }
 
         protected void onPostExecute(Void a) {
+            progressBar.setVisibility(View.GONE);
             NotifyWroteGIF();
         }
     }
