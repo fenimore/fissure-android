@@ -7,6 +7,7 @@ import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -68,7 +69,10 @@ public class MainActivity extends AppCompatActivity {
         // Create GIF folder if it doesn't exit
         GIF_DIR = new File(Environment.getExternalStorageDirectory() + File.separator +
                 Environment.DIRECTORY_PICTURES + File.separator +"Gifs");
-        if(!GIF_DIR.exists()) GIF_DIR.mkdir();
+        if(!GIF_DIR.exists()) {
+            GIF_DIR.mkdir();
+            // Somehow mount this guy?
+        }
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
