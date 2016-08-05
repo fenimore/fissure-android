@@ -11,12 +11,7 @@
         android:id="@+id/titleValue"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/short_instructions"
-        android:id="@+id/imageSelections"
-        android:layout_marginLeft="15dp" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -47,6 +42,12 @@
         android:text="@string/title_images"
         style="?android:attr/listSeparatorTextViewStyle"
         />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/short_instructions"
+        android:id="@+id/imageSelections"
+        android:layout_marginLeft="15dp" />
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -140,8 +140,11 @@ public class ViewActivity  extends AppCompatActivity {
 
     private void showFileChooser() {
         // TODO: Check if have permission
+        File GIF_DIR = new File(Environment.getExternalStorageDirectory() + File.separator +
+                Environment.DIRECTORY_PICTURES + File.separator +"Gifs");
+        Uri uri = Uri.parse(GIF_DIR.getPath());
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("image/*");
+        intent.setDataAndType(uri, "image/*");
         intent.addCategory(Intent.CATEGORY_OPENABLE);
 
         try {
