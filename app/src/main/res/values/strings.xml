@@ -22,4 +22,18 @@
     <string name="preference_activity_title">Preferences</string>
     <string name="instructions_activity_title">Instructions</string>
     <string name="source">Source Code</string>
+    <string name="requirements_title">Image Requirements</string>
+    <string name="title_file_size">File Sizes</string>
+    <string name="title_interface">User Interface</string>
+    <string name="app_intro">This application is a simple utility for creating and viewing GIF
+        files on an Android phone or tablet.</string>
+    <string name="user_interface">Click on the plus sign on the lower right hand side
+        to add JPG images one at a time.\nIf left blank, the GIF filename will be defined by Preferences.\nClick
+        on an Image ID to view it\s preview.\nLong click an Image ID to remove it from the list.
+    </string>
+    <string name="requirements">Selected images must be JPG (or JPEG) format.</string>
+    <string name="file_size">GIF file sizes will quickly get out of hand - while Fissure can
+        certainly create GIFs, it won\'t transfer them off the phone!\nIf
+        planning on sharing a GIF, try to keep it\'s compression below 85, and well below that
+        if the amount of frames exceeds 5.</string>
 </resources>

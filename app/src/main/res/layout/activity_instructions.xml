@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     tools:context="com.workingagenda.fissure.InstructionsActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -21,4 +21,66 @@
 
     </android.support.design.widget.AppBarLayout>
 
-</android.support.design.widget.CoordinatorLayout>
+    <ExpandableListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/expandableListView"
+        android:layout_gravity="center_horizontal" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_intro"
+            android:textSize="18dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            />
+        <TextView
+            android:id="@+id/title_interface"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/title_interface"
+            style="?android:attr/listSeparatorTextViewStyle"
+            />
+        <TextView
+            android:id="@+id/user_interface"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/user_interface"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            />
+        <TextView
+            android:id="@+id/title_requirements"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/requirements_title"
+            style="?android:attr/listSeparatorTextViewStyle"
+            />
+        <TextView
+            android:id="@+id/image_requirements"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/requirements"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            />
+        <TextView
+            android:id="@+id/title_file_size"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/title_file_size"
+            style="?android:attr/listSeparatorTextViewStyle"
+            />
+        <TextView
+            android:id="@+id/file_size"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/file_size"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            />
+
+
+
+</LinearLayout>

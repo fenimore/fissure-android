@@ -118,8 +118,6 @@ public class MainActivity extends AppCompatActivity {
                 filename = et.getText().toString();
                 // Launch Concurrent GIF generation
                 new GenerateGif().execute(bitmaps);
-                Toast.makeText(getBaseContext(), "Writing GIF",
-                        Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -273,6 +271,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private class GenerateGif extends AsyncTask<ArrayList, Void, Void> {
+        // Second param is Progress
         @Override
         protected Void doInBackground(ArrayList... params) {
             // Write Gif
@@ -295,6 +294,13 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
             return null;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            Toast.makeText(getBaseContext(), "Writing GIF",
+                    Toast.LENGTH_SHORT).show();
         }
 
         protected void onPostExecute(Void a) {

@@ -11,8 +11,9 @@ An Android App I whipped up for generating and viewing GIFs. It works...
 4. ~~Explain to press for preview~~
 5. ~~Change list view titles~~
 6. ~~Hide N/A Menu Items~~
-7. Instructions Activity
+7. ~~Instructions Activity~~
 8. French Translation
+8. Async Progress animations
 
 ### Eventually
 6. Dynamic gridview of bitmaps

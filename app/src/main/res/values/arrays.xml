@@ -5,6 +5,11 @@
         <item>40 - Medium</item>
         <item>60 - High</item>
         <item>85 - Full</item></string-array>
+    <string-array name="interface_array">
+        <item>If left blank, the filename will be the default as defined in Preferences.</item>
+        <item>Click on a Image ID to view it\'s preview.</item>
+        <item>Long click an Image ID to remove it from the list.</item>
+    </string-array>
     <integer-array name="pref_compressions">
         <item>20</item>
         <item>40</item>
