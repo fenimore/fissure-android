@@ -34,7 +34,7 @@
             android:maxHeight="40dip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@android:style/Widget.Holo.Light.ProgressBar.Large"/>
+            style="@android:style/Widget.Material.Light.ProgressBar.Large"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="75dp"
