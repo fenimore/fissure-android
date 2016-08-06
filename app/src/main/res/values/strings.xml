@@ -45,6 +45,6 @@
     <string name="license_title">License</string>
     <string name="author_title">Author</string>
     <string name="app_version">Fissure GIF 0.1.0</string>
-    <string name="license">Apache v2</string>
+    <string name="license">GPLv3</string>
     <string name="author">Fenimore Love</string>
 </resources>
