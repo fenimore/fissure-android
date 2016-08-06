@@ -2,7 +2,7 @@
 An Android App I whipped up for generating and viewing GIFs. 
 
 ## License
-Apache v2
+GPLv3
 
 ## Functionality
 - Create GIF from JPEGs
