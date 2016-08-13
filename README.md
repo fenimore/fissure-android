@@ -4,6 +4,9 @@ An Android App I whipped up for generating and viewing GIFs.
 ## License
 GPLv3
 
+## Translations!
+- Japanese (thanks naofum!)
+
 ## Functionality
 - Create GIF from JPEGs
 - View GIFs
