@@ -1,6 +1,8 @@
 package com.workingagenda.fissure;
 
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
@@ -8,6 +10,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -54,7 +57,7 @@ public class FilesActivity extends AppCompatActivity {
         btnClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new AlertDialog.Builder(getContext()).setTitle("Delete all downloads")
+                new AlertDialog.Builder(getBaseContext()).setTitle("Delete all downloads")
                         .setMessage("Are you sure you want to delete all episodes?\nLong click and episode to delete them individually.")
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
@@ -74,6 +77,7 @@ public class FilesActivity extends AppCompatActivity {
                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
             }
         });
+        // Refresh Button
         btnRefresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,6 +85,17 @@ public class FilesActivity extends AppCompatActivity {
                 mList.setAdapter(new FilesAdapter(getBaseContext(), R.layout.row_download, files));
             }
         });
+        // Click on List item
+        mList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                File f = files.get(position);
+                Intent y = new Intent(getBaseContext(), ViewActivity.class);
+                y.setData(Uri.fromFile(f));
+                startActivityForResult(y, 0); //Activity load = 0
+            }
+        });
+
     }
 
     private List<File> getListFiles() {
