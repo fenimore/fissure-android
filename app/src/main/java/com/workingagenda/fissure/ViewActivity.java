@@ -82,6 +82,7 @@ public class ViewActivity  extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.d("File URI on Result", data.toString());
         switch (requestCode) {
             case 0:
                 if (resultCode == RESULT_OK) {
@@ -89,6 +90,7 @@ public class ViewActivity  extends AppCompatActivity {
                     byte[] imageData = new byte[chunkSize];
                     // Load image
                     Uri uri = data.getData();
+                    Log.d("File URI on Result", uri.toString());
                     // Create a tmp file for the compression
                     tmpFile = new File(Environment.getExternalStorageDirectory() +
                             File.separator + "tmp.jpeg");

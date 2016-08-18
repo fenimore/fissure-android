@@ -92,7 +92,9 @@ public class FilesActivity extends AppCompatActivity {
                 File f = files.get(position);
                 Intent y = new Intent(getBaseContext(), ViewActivity.class);
                 y.setData(Uri.fromFile(f));
-                startActivityForResult(y, 0); //Activity load = 0
+                y.setDataAndType(Uri.fromFile(f), "Uri");
+                startActivityForResult(y, 1); //Activity load = 0
+                finish();
             }
         });
 
