@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -55,37 +56,37 @@ public class FilesActivity extends AppCompatActivity {
 
         mList.setAdapter(new FilesAdapter(getBaseContext(), R.layout.row_download, files));
 
-        btnClear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new AlertDialog.Builder(getBaseContext()).setTitle("Delete all downloads")
-                        .setMessage("Are you sure you want to delete all episodes?\nLong click and episode to delete them individually.")
-                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                for (File file : files) {
-                                    // remove files
-                                    file.delete();
-                                }
-                                files = getListFiles();
-                                mList.setAdapter(new FilesAdapter(getBaseContext(), R.layout.row_download, files));
-                                Toast toast = Toast.makeText(getBaseContext(), "GIFs Removed", Toast.LENGTH_SHORT);
-                                toast.show();
-                            }
-                        }).setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        // do nothing
-                    }
-                }).setIcon(android.R.drawable.ic_dialog_alert).show(); // TODO: USE app theme compat?
-            }
-        });
-        // Refresh Button
-        btnRefresh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                files = getListFiles();
-                mList.setAdapter(new FilesAdapter(getBaseContext(), R.layout.row_download, files));
-            }
-        });
+//        btnClear.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                new AlertDialog.Builder(getBaseContext()).setTitle("Delete all downloads")
+//                        .setMessage("Are you sure you want to delete all episodes?\nLong click and episode to delete them individually.")
+//                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                for (File file : files) {
+//                                    // remove files
+//                                    file.delete();
+//                                }
+//                                files = getListFiles();
+//                                mList.setAdapter(new FilesAdapter(getBaseContext(), R.layout.row_download, files));
+//                                Toast toast = Toast.makeText(getBaseContext(), "GIFs Removed", Toast.LENGTH_SHORT);
+//                                toast.show();
+//                            }
+//                        }).setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        // do nothing
+//                    }
+//                }).setIcon(android.R.drawable.ic_dialog_alert).show(); // TODO: USE app theme compat?
+//            }
+//        });
+//        // Refresh Button
+//        btnRefresh.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                files = getListFiles();
+//                mList.setAdapter(new FilesAdapter(getBaseContext(), R.layout.row_download, files));
+//            }
+//        });
         // Click on List item
         mList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -93,7 +94,8 @@ public class FilesActivity extends AppCompatActivity {
                 File f = files.get(position);
                 Intent y = new Intent(getBaseContext(), ViewActivity.class);
                 y.setData(Uri.fromFile(f));
-                //setResult(RESULT_OK, y);
+                //setResult(Activity.RESULT_OK, y);
+                Log.d("Result aaught to be", String.valueOf(RESULT_OK));
                 startActivityForResult(y, RESULT_OK); //Activity load = 0
                 finish();
             }
