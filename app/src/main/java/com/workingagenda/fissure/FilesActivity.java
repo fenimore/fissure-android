@@ -57,5 +57,6 @@ public class FilesActivity extends AppCompatActivity {
                 }
             }
         }
+        return inFiles;
     }
 }
