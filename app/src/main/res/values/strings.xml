@@ -49,4 +49,5 @@
     <string name="author">Fenimore Love</string>
     <string name="clear_all">Clear All</string>
     <string name="refresh">Refresh</string>
+    <string name="files_activity_title">GIFs directory</string>
 </resources>

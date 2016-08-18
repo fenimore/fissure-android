@@ -1,12 +1,18 @@
 package com.workingagenda.fissure;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import com.workingagenda.fissure.Adapters.FilesAdapter;
 
 import java.io.File;
 import java.lang.reflect.Array;
@@ -43,6 +49,38 @@ public class FilesActivity extends AppCompatActivity {
         // Context registration
         registerForContextMenu(mList);
 
+        mList.setAdapter(new FilesAdapter(getBaseContext(), R.layout.row_download, files));
+
+        btnClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(getContext()).setTitle("Delete all downloads")
+                        .setMessage("Are you sure you want to delete all episodes?\nLong click and episode to delete them individually.")
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                for (File file : files) {
+                                    // remove files
+                                    file.delete();
+                                }
+                                files = getListFiles();
+                                mList.setAdapter(new FilesAdapter(getBaseContext(), R.layout.row_download, files));
+                                Toast toast = Toast.makeText(getBaseContext(), "GIFs Removed", Toast.LENGTH_SHORT);
+                                toast.show();
+                            }
+                        }).setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // do nothing
+                    }
+                }).setIcon(android.R.drawable.ic_dialog_alert).show();
+            }
+        });
+        btnRefresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                files = getListFiles();
+                mList.setAdapter(new FilesAdapter(getBaseContext(), R.layout.row_download, files));
+            }
+        });
     }
 
     private List<File> getListFiles() {
