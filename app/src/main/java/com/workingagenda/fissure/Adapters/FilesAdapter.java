@@ -46,7 +46,7 @@ public class FilesAdapter extends ArrayAdapter<File> {
             }
             txt.setText(title);
             // TODO: Change to String.format()
-            tag.setText(Long.toString(f.length()));
+            tag.setText(Long.toString((f.length()/1024)/1000) + "MB");
 
         }
 
