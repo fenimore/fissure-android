@@ -51,10 +51,10 @@
             android:name=".FilesActivity"
             android:label="@string/files_activity_title"
             android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".InstructionsActivity">
+            android:parentActivityName=".ViewActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.workingagenda.fissure.InstructionsActivity" />
+                android:value="com.workingagenda.fissure.ViewActivity" />
         </activity>
     </application>
 

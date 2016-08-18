@@ -1,5 +1,6 @@
 package com.workingagenda.fissure;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -92,8 +93,8 @@ public class FilesActivity extends AppCompatActivity {
                 File f = files.get(position);
                 Intent y = new Intent(getBaseContext(), ViewActivity.class);
                 y.setData(Uri.fromFile(f));
-                y.setDataAndType(Uri.fromFile(f), "Uri");
-                startActivityForResult(y, 1); //Activity load = 0
+                //setResult(RESULT_OK, y);
+                startActivityForResult(y, RESULT_OK); //Activity load = 0
                 finish();
             }
         });

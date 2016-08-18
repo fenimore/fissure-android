@@ -82,7 +82,8 @@ public class ViewActivity  extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.d("File URI on Result", data.toString());
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d("File URI on Result", String.valueOf(resultCode));
         switch (requestCode) {
             case 0:
                 if (resultCode == RESULT_OK) {
@@ -132,7 +133,7 @@ public class ViewActivity  extends AppCompatActivity {
                 }
                 break;
         }
-        super.onActivityResult(requestCode, resultCode, data);
+
     }
 
     private void showFileChooser() {
