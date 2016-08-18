@@ -38,10 +38,10 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         mEditText = (EditTextPreference) findPreference("pre_default_title");
         mNumberPicker = (NumberPickerPreference) findPreference("pref_compression");
 
-
-        String vName = BuildConfig.VERSION_NAME;
-        Preference vPref = findPreference("pref_static_key0");
-        vPref.setSummary("Fissure "+ vName);
+        // TODO: Set Programmatically
+        //String vName = BuildConfig.VERSION_NAME;
+        //Preference vPref = findPreference("pref_static_key0");
+        //vPref.setSummary("Fissure "+ vName);
     }
 
     @Override
