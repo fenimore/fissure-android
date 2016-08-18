@@ -15,6 +15,7 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatDelegate;
 
+import com.workingagenda.fissure.BuildConfig;
 import com.workingagenda.fissure.PrefHelper.NumberPickerPreference;
 import com.workingagenda.fissure.R;
 
@@ -37,6 +38,10 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         mEditText = (EditTextPreference) findPreference("pre_default_title");
         mNumberPicker = (NumberPickerPreference) findPreference("pref_compression");
 
+
+        String vName = BuildConfig.VERSION_NAME;
+        Preference vPref = findPreference("pref_static_key0");
+        vPref.setSummary("Fissure "+ vName);
     }
 
     @Override
