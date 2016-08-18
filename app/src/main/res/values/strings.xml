@@ -47,4 +47,6 @@
     <string name="app_version">Fissure GIF 0.1.0</string>
     <string name="license">GPLv3</string>
     <string name="author">Fenimore Love</string>
+    <string name="clear_all">Clear All</string>
+    <string name="refresh">Refresh</string>
 </resources>

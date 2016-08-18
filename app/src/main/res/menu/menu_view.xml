@@ -7,6 +7,9 @@
         app:showAsAction="always"
         android:icon="@drawable/ic_pageview_white_24dp"/>
     <item
+        android:id="@+id/action_files"
+        android:title="View GIF Directory"/>
+    <item
         android:id="@+id/action_upload"
         android:title="@string/upload_gif"
         app:showAsAction="never"
