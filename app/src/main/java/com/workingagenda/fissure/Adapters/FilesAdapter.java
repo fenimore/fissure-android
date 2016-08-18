@@ -46,7 +46,7 @@ public class FilesAdapter extends ArrayAdapter<File> {
             }
             txt.setText(title);
             // TODO: Change to String.format()
-            tag.setText(Long.toString(f.getTotalSpace()));
+            tag.setText(Long.toString(f.length()));
 
         }
 
