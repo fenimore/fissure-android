@@ -1,0 +1,50 @@
+<resources>
+    <string name="app_name">Fissure</string>
+    <string name="action_settings">設定</string>
+    <string name="pref_compression">圧縮</string>
+    <string name="pref_repeat">無制限に繰り返す</string>
+    <string name="load_gif">ロード</string>
+    <string name="upload_gif">アップロード</string>
+    <string name="clear">リセット</string>
+    <string name="short_instructions">下の  +  記号でフレームを追加します。</string>
+    <string name="title_hint">GIF ファイル名を入力するか、空のままにします</string>
+    <string name="pref_repeat_summary">それ以外の場合は、2 回実行して停止します</string>
+    <string name="pref_compression_summary">高品質にすると大幅にサイズが大きくなります</string>
+    <string name="pref_default_title">デフォルト GIF ファイル名</string>
+    <string name="pref_delay_summary">フレーム切り替え (ミリ秒)</string>
+    <string name="pref_delay">フレーム間の遅延</string>
+    <string name="pref_gif_category">GIF 生成</string>
+    <string name="pref_app_category">アプリケーション情報</string>
+    <string name="remove">削除</string>
+    <string name="image_options">画像オプション</string>
+    <string name="share_gif">共有</string>
+    <string name="view_activity_title">GIF ビューアー</string>
+    <string name="preference_activity_title">プリファレンス</string>
+    <string name="instructions_activity_title">説明</string>
+    <string name="source">ソースコード</string>
+    <string name="requirements_title">画像の条件</string>
+    <string name="title_file_size">ファイルサイズ</string>
+    <string name="title_interface">ユーザーインターフェース</string>
+    <string name="app_intro">このアプリケーションは Android 携帯電話やタブレットで、GIF
+        ファイルを作成したり表示するためのシンプルなユーティリティです。</string>
+    <string name="user_interface">外部のファイルマネージャーアプリケーションが必要になります。\n
+        右下のプラス記号をクリックして、1 枚の JPG 画像を追加します。\n
+        GIF ファイル名を空にすると、プリファレンスで定義したものになります\n
+        画像 ID の上でクリックすると、プレビューを表示します。画像 ID を長押しすると、リストから削除します。\n
+        GIF は Pictures/ の中の Gifs/ ディレクトリーに保存されます。
+    </string>
+    <string name="requirements">選択する画像は JPG (または JPEG) 形式の必要があります。\nThe
+        画像は同じディメンジョンにする必要があります。</string>
+    <string name="file_size">GIF ファイルのサイズはすぐに手に負えなくなります - Fissure
+        が GIF を作成するまで、携帯電話から外に転送できません!\n
+        GIF を共有する予定であれば、圧縮は 85 以下に、フレーム数が 5 を超える場合は、
+        さらに下にするようにしてください。</string>
+    <string name="generate_btn">生成</string>
+    <string name="title_images">GIF フレーム:</string>
+    <string name="app_version_title">アプリケーションのバージョン</string>
+    <string name="license_title">ライセンス</string>
+    <string name="author_title">作者</string>
+    <string name="app_version">Fissure GIF 0.1.0</string>
+    <string name="license">GPLv3</string>
+    <string name="author">Fenimore Love</string>
+</resources>
