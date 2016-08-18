@@ -5,13 +5,19 @@
     <item
         android:id="@+id/action_view"
         android:orderInCategory="0"
-        android:title="View"
+        android:title="@string/title_view"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_remove_red_eye_white_24dp"/>
+    <item
+        android:id="@+id/action_select"
+        android:orderInCategory="0"
+        android:title="@string/title_select"
         app:showAsAction="always"
         android:icon="@drawable/ic_remove_red_eye_white_24dp"/>
     <item
         android:id="@+id/action_clear"
         android:orderInCategory="200"
-        android:title="Clear"
+        android:title="@string/title_clear"
         app:showAsAction="ifRoom"
         android:icon="@drawable/ic_cached_white_24dp"/>
     <item
@@ -30,7 +36,7 @@
     <item
         android:id="@+id/action_instructions"
         android:orderInCategory="400"
-        android:title="Instructions"
+        android:title="@string/title_instructions"
         app:showAsAction="never"
         />
 </menu>

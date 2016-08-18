@@ -50,4 +50,8 @@
     <string name="clear_all">Clear All</string>
     <string name="refresh">Refresh</string>
     <string name="files_activity_title">GIFs directory</string>
+    <string name="title_select">Select</string>
+    <string name="title_view">View</string>
+    <string name="title_clear">Clear</string>
+    <string name="title_instructions">Instructions</string>
 </resources>
