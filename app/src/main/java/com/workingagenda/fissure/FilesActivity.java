@@ -74,7 +74,7 @@ public class FilesActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         // do nothing
                     }
-                }).setIcon(android.R.drawable.ic_dialog_alert).show();
+                }).setIcon(android.R.drawable.ic_dialog_alert).show(); // TODO: USE app theme compat?
             }
         });
         // Refresh Button
