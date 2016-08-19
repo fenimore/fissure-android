@@ -28,8 +28,6 @@ import java.util.List;
 public class FilesActivity extends AppCompatActivity {
 
     //Declare some Views
-    public Button btnClear;
-    public Button btnRefresh;
     public ListView mList;
     // File List
     public List<File> files;
@@ -47,8 +45,6 @@ public class FilesActivity extends AppCompatActivity {
         files = getListFiles();
         // Views items
         mList = (ListView) findViewById(android.R.id.list);
-        btnClear = (Button) findViewById(R.id.clear);
-        btnRefresh = (Button) findViewById(R.id.refresh);
         // Context registration
         registerForContextMenu(mList);
 
