@@ -35,15 +35,19 @@ import java.util.Arrays;
 public class ViewActivity  extends AppCompatActivity {
     private File tmpFile;
     private WebView webView;
+    private Uri uri;
+    final int chunkSize = 1024; // One kb at a time
+    private byte[] imageData = new byte[chunkSize];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (savedInstanceState != null) {
-            tmpFile = new File(Uri.parse(savedInstanceState.getString("fileUri")).getPath());
-            displayFile(tmpFile, Uri.parse(savedInstanceState.getString("fileUri")), new byte[1024]);
-        }
         setContentView(R.layout.activity_view);
+        if (savedInstanceState != null) {
+            tmpFile = new File(Uri.parse(savedInstanceState.getString("tmpFileUri")).getPath());
+            uri = Uri.parse(savedInstanceState.getString("fileUri"));
+            displayFile(tmpFile);
+        }
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -62,10 +66,13 @@ public class ViewActivity  extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        tmpFile = new File(Environment.getExternalStorageDirectory() +
+        File bundledFile = new File(Environment.getExternalStorageDirectory() +
                 File.separator + "tmp.jpeg");
-        if(tmpFile.exists()){
-            outState.putString("fileUri", tmpFile.toURI().toString());
+        if(bundledFile.exists()){
+            outState.putString("tmpFileUri", bundledFile.toURI().toString());
+            if (uri != null){
+                outState.putString("fileUri", uri.toString());
+            }
         }
     }
 
@@ -107,10 +114,8 @@ public class ViewActivity  extends AppCompatActivity {
         switch (requestCode) {
             case 0:
                 if (resultCode == RESULT_OK) {
-                    final int chunkSize = 1024; // One kb at a time
-                    byte[] imageData = new byte[chunkSize];
                     // Load image
-                    Uri uri = data.getData();
+                    uri = data.getData();
                     // Create a tmp file for the compression
                     tmpFile = new File(Environment.getExternalStorageDirectory() +
                             File.separator + "tmp.jpeg");
@@ -119,7 +124,7 @@ public class ViewActivity  extends AppCompatActivity {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    displayFile(tmpFile, uri, imageData);
+                    displayFile(tmpFile);
                 }
                 break;
         }
@@ -130,9 +135,9 @@ public class ViewActivity  extends AppCompatActivity {
         // TODO: Check if have permission
         File GIF_DIR = new File(Environment.getExternalStorageDirectory() + File.separator +
                 Environment.DIRECTORY_PICTURES + File.separator +"Gifs");
-        Uri uri = Uri.parse(GIF_DIR.getPath());
+        Uri dirUri = Uri.parse(GIF_DIR.getPath());
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setDataAndType(uri, "image/*");
+        intent.setDataAndType(dirUri, "image/*");
         intent.addCategory(Intent.CATEGORY_OPENABLE);
 
         try {
@@ -145,7 +150,7 @@ public class ViewActivity  extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
         }
     }
-    private void displayFile(File tmpFile, Uri uri, byte[] imageData) {
+    private void displayFile(File tmpFile) {
 
         OutputStream out = null;
         InputStream in = null;
