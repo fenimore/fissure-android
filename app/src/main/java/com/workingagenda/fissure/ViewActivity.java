@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -37,6 +38,11 @@ public class ViewActivity  extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (savedInstanceState != null) {
+            if (savedInstanceState.getString("fileuri") != null){
+                tmpFile = new File(Uri.parse(savedInstanceState.getString("fileUri")).getPath());
+            }
+        }
         setContentView(R.layout.activity_view);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -51,6 +57,18 @@ public class ViewActivity  extends AppCompatActivity {
                             File.separator + "tmp.jpeg");
         tmpFile.delete();
 
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        tmpFile = new File(Environment.getExternalStorageDirectory() +
+                File.separator + "tmp.jpeg");
+        if(tmpFile.exists()){
+            outState.putString("fileUri", tmpFile.toURI().toString());
+        } else {
+            outState = null;
+        }
     }
 
     @Override
@@ -87,9 +105,6 @@ public class ViewActivity  extends AppCompatActivity {
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-        Log.d("File URI on Result", String.valueOf(resultCode));
-        Log.d("File Request CODe", String.valueOf(requestCode));
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case 0:
@@ -98,7 +113,6 @@ public class ViewActivity  extends AppCompatActivity {
                     byte[] imageData = new byte[chunkSize];
                     // Load image
                     Uri uri = data.getData();
-                    Log.d("File URI on Result", uri.toString());
                     // Create a tmp file for the compression
                     tmpFile = new File(Environment.getExternalStorageDirectory() +
                             File.separator + "tmp.jpeg");
@@ -107,38 +121,7 @@ public class ViewActivity  extends AppCompatActivity {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    OutputStream out = null;
-                    InputStream in = null;
-                    try {
-                        out = new FileOutputStream(tmpFile);
-                        in = getContentResolver().openInputStream(uri);
-                        int bytesRead;
-                        while((bytesRead = in.read(imageData)) > 0 ) {
-                            out.write(Arrays.copyOfRange(imageData, 0, Math.max(0, bytesRead)));
-                        }
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } finally {
-                        try {
-                            out.close();
-                            in.close();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    // Construct path and load into Webview
-                    String gif = "file://" + tmpFile.getPath();
-                    // TODO: Create padding
-                    String html = "<style>img{padding-top:5%;display: inline; height: auto; max-width: 100%;}"+
-                            "</style><body><img src=\"" + gif + "\"/></body>";
-                    WebView webView = (WebView) findViewById(R.id.gifView);
-                    webView.clearCache(true); // For changing the view, figuratively
-                    webView.loadDataWithBaseURL("file://android_asset/", html, "text/html", "utf-8", null);
-                    // tmpFile deletes onDestroy()
-                } else if (resultCode == 3){
-                    Log.d("333", "what?");
+                    displayFile(tmpFile, uri, imageData);
                 }
                 break;
         }
@@ -164,5 +147,36 @@ public class ViewActivity  extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
         }
     }
-
+    private void displayFile(File tmpFile, Uri uri, byte[] imageData) {
+        OutputStream out = null;
+        InputStream in = null;
+        try {
+            out = new FileOutputStream(tmpFile);
+            in = getContentResolver().openInputStream(uri);
+            int bytesRead;
+            while((bytesRead = in.read(imageData)) > 0 ) {
+                out.write(Arrays.copyOfRange(imageData, 0, Math.max(0, bytesRead)));
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                out.close();
+                in.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        // Construct path and load into Webview
+        String gif = "file://" + tmpFile.getPath();
+        // TODO: Create padding
+        String html = "<style>img{padding-top:5%;display: inline; height: auto; max-width: 100%;}"+
+                "</style><body><img src=\"" + gif + "\"/></body>";
+        WebView webView = (WebView) findViewById(R.id.gifView);
+        webView.clearCache(true); // For changing the view, figuratively
+        webView.loadDataWithBaseURL("file://android_asset/", html, "text/html", "utf-8", null);
+        // tmpFile deletes onDestroy()
+    }
 }
