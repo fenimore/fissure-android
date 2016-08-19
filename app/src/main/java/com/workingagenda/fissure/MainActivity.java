@@ -163,9 +163,6 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);
             return true;
-        } else if (id == R.id.action_lock) {
-            toggleOrientationLock();
-            return true;
         } else if (id == R.id.action_view){
             Intent intent = new Intent(this, ViewActivity.class);
             startActivity(intent);

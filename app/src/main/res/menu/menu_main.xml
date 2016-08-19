@@ -21,13 +21,6 @@
         app:showAsAction="always"
         android:icon="@drawable/ic_settings_white_24dp"/>
     <item
-        android:id="@+id/action_lock"
-        android:orderInCategory="300"
-        android:title="Lock"
-        app:showAsAction="ifRoom"
-        android:icon="@drawable/ic_screen_lock_rotation_white_24dp"
-        />
-    <item
         android:id="@+id/action_instructions"
         android:orderInCategory="400"
         android:title="@string/title_instructions"
