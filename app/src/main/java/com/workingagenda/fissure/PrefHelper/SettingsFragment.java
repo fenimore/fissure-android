@@ -26,6 +26,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
     //private CheckBoxPreference mCheckBox;
     private EditTextPreference mEditText;
     private NumberPickerPreference mNumberPicker;
+    private Preference mVersion;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,9 +40,9 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         mNumberPicker = (NumberPickerPreference) findPreference("pref_compression");
 
         // TODO: Set Programmatically
-        //String vName = BuildConfig.VERSION_NAME;
-        //Preference vPref = findPreference("pref_static_key0");
-        //vPref.setSummary("Fissure "+ vName);
+        String vName = BuildConfig.VERSION_NAME;
+        mVersion = findPreference("pref_static_field_key0");
+        mVersion.setSummary("Fissure "+ vName);
     }
 
     @Override

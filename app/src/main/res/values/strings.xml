@@ -45,7 +45,7 @@
     <string name="app_version_title">Application Version</string>
     <string name="license_title">License</string>
     <string name="author_title">Developer</string>
-    <string name="app_version">Fissure GIF 0.1.0</string>
+    <string name="app_version">Fissure GIF 0.2.0</string>
     <string name="license">GPLv3</string>
     <string name="author">Fenimore Love</string>
     <string name="clear_all">Clear All</string>
