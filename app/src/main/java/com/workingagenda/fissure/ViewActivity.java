@@ -34,14 +34,14 @@ import java.util.Arrays;
  */
 public class ViewActivity  extends AppCompatActivity {
     private File tmpFile;
+    private WebView webView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (savedInstanceState != null) {
-            if (savedInstanceState.getString("fileuri") != null){
-                tmpFile = new File(Uri.parse(savedInstanceState.getString("fileUri")).getPath());
-            }
+            tmpFile = new File(Uri.parse(savedInstanceState.getString("fileUri")).getPath());
+            displayFile(tmpFile, Uri.parse(savedInstanceState.getString("fileUri")), new byte[1024]);
         }
         setContentView(R.layout.activity_view);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -66,8 +66,6 @@ public class ViewActivity  extends AppCompatActivity {
                 File.separator + "tmp.jpeg");
         if(tmpFile.exists()){
             outState.putString("fileUri", tmpFile.toURI().toString());
-        } else {
-            outState = null;
         }
     }
 
@@ -148,6 +146,7 @@ public class ViewActivity  extends AppCompatActivity {
         }
     }
     private void displayFile(File tmpFile, Uri uri, byte[] imageData) {
+        Log.d("TMP file", tmpFile.getPath());
         OutputStream out = null;
         InputStream in = null;
         try {
@@ -174,8 +173,8 @@ public class ViewActivity  extends AppCompatActivity {
         // TODO: Create padding
         String html = "<style>img{padding-top:5%;display: inline; height: auto; max-width: 100%;}"+
                 "</style><body><img src=\"" + gif + "\"/></body>";
-        WebView webView = (WebView) findViewById(R.id.gifView);
-        webView.clearCache(true); // For changing the view, figuratively
+        webView = (WebView) findViewById(R.id.gifView);
+        //webView.clearCache(true); // For changing the view, literally
         webView.loadDataWithBaseURL("file://android_asset/", html, "text/html", "utf-8", null);
         // tmpFile deletes onDestroy()
     }
