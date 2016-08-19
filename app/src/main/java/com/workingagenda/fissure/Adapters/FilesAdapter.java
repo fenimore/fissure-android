@@ -44,7 +44,11 @@ public class FilesAdapter extends ArrayAdapter<File> {
             Bitmap bmap = BitmapFactory.decodeFile(f.getPath());
             img.setImageBitmap(bmap);
             // Txt
-            txt.setText(title);
+            if (title.endsWith(".gif")) {
+                txt.setText(title.substring(0, title.length() - 4));
+            } else {
+                txt.setText(title);
+            }
             // TODO: Change to String.format()
             tag.setText(Long.toString((f.length()/1024)/1000) + "MB");
 
