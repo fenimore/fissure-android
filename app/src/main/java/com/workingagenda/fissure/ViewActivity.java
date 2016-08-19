@@ -128,7 +128,6 @@ public class ViewActivity  extends AppCompatActivity {
                 }
                 break;
         }
-
     }
 
     private void showFileChooser() {
@@ -177,10 +176,10 @@ public class ViewActivity  extends AppCompatActivity {
         String gif = "file://" + tmpFile.getPath();
         Log.d("TMP file", tmpFile.getPath());
         // TODO: Create padding
-        String html = "<style>img{padding-top:5%;display: inline; height: auto; max-width: 100%;}"+
+        String html = "<style>img{padding-top:3%;padding-right:2%;padding-left:2%;display: inline; height: auto; max-width: 95%;}"+
                 "</style><body><img src=\"" + gif + "\"/></body>";
         webView = (WebView) findViewById(R.id.gifView);
-        //webView.clearCache(true); // For changing the view, literally
+        webView.clearCache(true); // For changing the view, literally
         webView.loadDataWithBaseURL("file://android_asset/", html, "text/html", "utf-8", null);
         // tmpFile deletes onDestroy()
     }
