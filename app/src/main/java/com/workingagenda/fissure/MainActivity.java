@@ -99,6 +99,8 @@ public class MainActivity extends AppCompatActivity {
 
         // List view of images?
         images = new ArrayList<>();
+        // TODO: add saved Instance state
+        // Or disable orientation switch?
         ListView lv = (ListView) findViewById(R.id.listImage);
         registerForContextMenu(lv);
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, images);
@@ -133,6 +135,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
 
     }
 
