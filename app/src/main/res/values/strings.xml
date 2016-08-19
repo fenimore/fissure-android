@@ -55,4 +55,7 @@
     <string name="title_clear">Clear</string>
     <string name="title_instructions">Instructions</string>
     <string name="view_gif_directory">View GIF Directory</string>
+    <string name="pref_dir_category">Directory Settings</string>
+    <string name="pref_img_load_title">Load images in directory list</string>
+    <string name="pref_img_load_summary">Too many GIFs might crash the directory view</string>
 </resources>

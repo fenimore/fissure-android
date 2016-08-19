@@ -1,8 +1,10 @@
 package com.workingagenda.fissure.Adapters;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,8 +43,13 @@ public class FilesAdapter extends ArrayAdapter<File> {
             TextView tag = (TextView) v.findViewById(R.id.row_tag);
             String title = f.getName();
             // Image Preview
-            Bitmap bmap = BitmapFactory.decodeFile(f.getPath());
-            img.setImageBitmap(bmap);
+            SharedPreferences sharedPreferences =
+                    PreferenceManager.getDefaultSharedPreferences(getContext());
+            boolean loadImages = sharedPreferences.getBoolean("pref_img_load", true);
+            if (loadImages){
+                Bitmap bmap = BitmapFactory.decodeFile(f.getPath());
+                img.setImageBitmap(bmap);
+            }
             // Txt
             if (title.endsWith(".gif")) {
                 txt.setText(title.substring(0, title.length() - 4));

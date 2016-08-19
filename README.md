@@ -15,13 +15,7 @@ GPLv3
 
 ### Immediate
 8. French Translation
-9. bundledInstanceState for changing orientation [important]
 9. get bitmap array forsaved instance state
-10. Directory list activity image view
-10. make direcotry row a bit bigger
-11. Image thumbnails.
-12. Remove reresh and clear btton
-13. add delete on context menu
 14. Add when empty instructions text
 15. make instructions scroll view
 16. Take out weird menu options.
@@ -37,6 +31,7 @@ GPLv3
 8. Preferences
  - sample size
  - GIF size
+ - Directory name
 13. Share button
 14. Upload
 

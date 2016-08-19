@@ -25,6 +25,14 @@
             android:defaultValue="500"
             />
     </PreferenceCategory>
+    <PreferenceCategory android:title="@string/pref_dir_category">
+        <CheckBoxPreference
+            android:key="pref_img_load"
+            android:title="@string/pref_img_load_title"
+            android:summary="@string/pref_img_load_summary"
+            android:defaultValue="true"
+            />
+    </PreferenceCategory>
     <PreferenceCategory android:title="@string/pref_app_category">
         <Preference
             android:key="pref_static_field_key0"

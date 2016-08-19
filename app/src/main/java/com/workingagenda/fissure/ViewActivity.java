@@ -70,7 +70,7 @@ public class ViewActivity  extends AppCompatActivity {
                 File.separator + "tmp.jpeg");
         if(bundledFile.exists()){
             outState.putString("tmpFileUri", bundledFile.toURI().toString());
-            if (uri != null){
+            if (uri != null){ // This is probs unnecessary
                 outState.putString("fileUri", uri.toString());
             }
         }

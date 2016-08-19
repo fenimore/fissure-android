@@ -23,7 +23,7 @@ import com.workingagenda.fissure.R;
  * Created by fen on 8/3/16.
  */
 public class SettingsFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
-    private CheckBoxPreference mCheckBox;
+    //private CheckBoxPreference mCheckBox;
     private EditTextPreference mEditText;
     private NumberPickerPreference mNumberPicker;
 
@@ -34,7 +34,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         super.onCreate(savedInstanceState);
 
         addPreferencesFromResource(R.xml.settings);
-        mCheckBox = (CheckBoxPreference) findPreference("pref_repeat");
+        //mCheckBox = (CheckBoxPreference) findPreference("pref_repeat");
         mEditText = (EditTextPreference) findPreference("pre_default_title");
         mNumberPicker = (NumberPickerPreference) findPreference("pref_compression");
 

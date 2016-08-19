@@ -14,9 +14,6 @@
         app:showAsAction="always"
         android:icon="@drawable/ic_pageview_white_24dp"/>
     <item
-        android:id="@+id/action_files"
-        android:title="@string/view_gif_directory"/>
-    <item
         android:id="@+id/action_upload"
         android:title="@string/upload_gif"
         app:showAsAction="never"
