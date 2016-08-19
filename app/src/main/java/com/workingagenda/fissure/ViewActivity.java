@@ -146,7 +146,7 @@ public class ViewActivity  extends AppCompatActivity {
         }
     }
     private void displayFile(File tmpFile, Uri uri, byte[] imageData) {
-        Log.d("TMP file", tmpFile.getPath());
+
         OutputStream out = null;
         InputStream in = null;
         try {
@@ -170,6 +170,7 @@ public class ViewActivity  extends AppCompatActivity {
         }
         // Construct path and load into Webview
         String gif = "file://" + tmpFile.getPath();
+        Log.d("TMP file", tmpFile.getPath());
         // TODO: Create padding
         String html = "<style>img{padding-top:5%;display: inline; height: auto; max-width: 100%;}"+
                 "</style><body><img src=\"" + gif + "\"/></body>";
