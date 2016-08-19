@@ -57,4 +57,5 @@
     <string name="title_instructions">Instructions</string>
     <string name="title_select">Select</string>
     <string name="title_view">View</string>
+    <string name="view_gif_directory">View GIF</string>
 </resources>

@@ -3,6 +3,8 @@ An Android App I whipped up for generating and viewing GIFs.
 
 ## What's new in v0.2.0?
 - Japanese/French translations
+   - Although, I'm sorry Japanese locale, some small bits
+    are not translated
 - View Gifs/ dossier and delete Gifs within app!
 - Rotating screen in GIF viewer doesn't clear image!
 - Minor tweaks and tugs :D
