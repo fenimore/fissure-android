@@ -13,7 +13,7 @@
         android:orderInCategory="0"
         android:title="@string/title_select"
         app:showAsAction="always"
-        android:icon="@drawable/ic_remove_red_eye_white_24dp"/>
+        android:icon="@drawable/ic_folder_white_24dp"/>
     <item
         android:id="@+id/action_clear"
         android:orderInCategory="200"

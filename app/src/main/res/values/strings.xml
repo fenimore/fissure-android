@@ -54,4 +54,5 @@
     <string name="title_view">View</string>
     <string name="title_clear">Clear</string>
     <string name="title_instructions">Instructions</string>
+    <string name="view_gif_directory">View GIF Directory</string>
 </resources>

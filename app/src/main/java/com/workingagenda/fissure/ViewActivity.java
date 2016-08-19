@@ -70,6 +70,10 @@ public class ViewActivity  extends AppCompatActivity {
         if (id == R.id.action_load) {
             showFileChooser();
             return true;
+        } else if(id == R.id.action_select) {
+            Intent intent = new Intent(this, FilesActivity.class);
+            startActivity(intent);
+            return true;
         } else if (id == R.id.action_upload) {
             // TODO: upload to image server?
             Toast.makeText(this, "Uploads are not implemented yet.",

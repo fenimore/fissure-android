@@ -97,7 +97,7 @@ public class FilesActivity extends AppCompatActivity {
                 //setResult(Activity.RESULT_OK, y);
                 Log.d("Result aaught to be", String.valueOf(RESULT_OK));
                 startActivityForResult(y, RESULT_OK); //Activity load = 0
-                finish();
+                //finish();
             }
         });
 
