@@ -5,6 +5,7 @@
         android:id="@+id/action_load"
         android:title="@string/load_gif"
         app:showAsAction="always"
+        android:orderInCategory="100"
         android:icon="@drawable/ic_pageview_white_24dp"/>
     <item
         android:id="@+id/action_select"
