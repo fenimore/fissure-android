@@ -31,7 +31,8 @@
         on the plus sign on the lower right hand side
         to add JPG images one at a time.\nIf left blank, the GIF filename will be defined by Preferences.\nClick
         on an Image ID to view it\s preview.\nLong click an Image ID to remove it from the list.\nGIFs
-        are saved to the Gifs/ directory inside of Pictures/.
+        are saved to the Gifs/ directory inside of Pictures/.\nWhen selecting a GIF from the
+        GIFs directory activity, long click an item to delete it.
     </string>
     <string name="requirements">Selected images must be JPG (or JPEG) format.\nThe
         images must be the same dimensions.</string>
@@ -57,5 +58,5 @@
     <string name="view_gif_directory">View GIF Directory</string>
     <string name="pref_dir_category">Directory Settings</string>
     <string name="pref_img_load_title">Load images in directory list</string>
-    <string name="pref_img_load_summary">Too many GIFs might crash the directory view</string>
+    <string name="pref_img_load_summary">Too many GIFs might crash or crash the directory view</string>
 </resources>

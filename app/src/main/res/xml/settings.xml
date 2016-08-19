@@ -22,7 +22,7 @@
             android:title="@string/pref_delay"
             android:summary="@string/pref_delay_summary"
             android:key="pref_delay"
-            android:defaultValue="500"
+            android:defaultValue="250"
             />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/pref_dir_category">
