@@ -1,6 +1,8 @@
 package com.workingagenda.fissure.Adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,11 +40,10 @@ public class FilesAdapter extends ArrayAdapter<File> {
             TextView txt = (TextView) v.findViewById(R.id.row_title);
             TextView tag = (TextView) v.findViewById(R.id.row_tag);
             String title = f.getName();
-            try {
-                // Set image
-            } catch (Exception ex) {
-                // Catch image failure
-            }
+            // Image Preview
+            Bitmap bmap = BitmapFactory.decodeFile(f.getPath());
+            img.setImageBitmap(bmap);
+            // Txt
             txt.setText(title);
             // TODO: Change to String.format()
             tag.setText(Long.toString((f.length()/1024)/1000) + "MB");
