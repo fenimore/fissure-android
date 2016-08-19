@@ -6,13 +6,13 @@
         android:title="@string/load_gif"
         app:showAsAction="always"
         android:orderInCategory="100"
-        android:icon="@drawable/ic_pageview_white_24dp"/>
+        android:icon="@drawable/ic_folder_white_24dp"/>
     <item
         android:id="@+id/action_select"
         android:orderInCategory="0"
         android:title="@string/title_select"
         app:showAsAction="always"
-        android:icon="@drawable/ic_folder_white_24dp"/>
+        android:icon="@drawable/ic_pageview_white_24dp"/>
     <item
         android:id="@+id/action_files"
         android:title="@string/view_gif_directory"/>
