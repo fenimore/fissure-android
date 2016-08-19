@@ -72,7 +72,7 @@ public class ViewActivity  extends AppCompatActivity {
             return true;
         } else if(id == R.id.action_select) {
             Intent intent = new Intent(this, FilesActivity.class);
-            startActivity(intent);
+            startActivityForResult(intent, 0);
             return true;
         } else if (id == R.id.action_upload) {
             // TODO: upload to image server?
@@ -87,9 +87,10 @@ public class ViewActivity  extends AppCompatActivity {
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+
         Log.d("File URI on Result", String.valueOf(resultCode));
         Log.d("File Request CODe", String.valueOf(requestCode));
+        super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case 0:
                 if (resultCode == RESULT_OK) {
@@ -136,6 +137,8 @@ public class ViewActivity  extends AppCompatActivity {
                     webView.clearCache(true); // For changing the view, figuratively
                     webView.loadDataWithBaseURL("file://android_asset/", html, "text/html", "utf-8", null);
                     // tmpFile deletes onDestroy()
+                } else if (resultCode == 3){
+                    Log.d("333", "what?");
                 }
                 break;
         }

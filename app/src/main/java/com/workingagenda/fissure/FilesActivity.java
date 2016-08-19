@@ -92,12 +92,15 @@ public class FilesActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 File f = files.get(position);
-                Intent y = new Intent(getBaseContext(), ViewActivity.class);
+                Intent y = getIntent();//new Intent(getBaseContext(), ViewActivity.class);
                 y.setData(Uri.fromFile(f));
-                //setResult(Activity.RESULT_OK, y);
+                // IMPORTANT WTF
+                // This activity must have been started from
+                // another activity with startActivityForResult()
+                // It's not that I start this activity as such...
+                setResult(RESULT_OK, y);
                 Log.d("Result aaught to be", String.valueOf(RESULT_OK));
-                startActivityForResult(y, RESULT_OK); //Activity load = 0
-                //finish();
+                finish();
             }
         });
 
