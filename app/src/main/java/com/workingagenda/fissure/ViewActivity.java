@@ -81,9 +81,11 @@ public class ViewActivity  extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Log.d("File URI on Result", String.valueOf(resultCode));
+        Log.d("File Request CODe", String.valueOf(requestCode));
         switch (requestCode) {
             case 0:
                 if (resultCode == RESULT_OK) {

@@ -15,6 +15,8 @@ GPLv3
 
 ### Immediate
 8. French Translation
+9. bundledInstanceState for changing orientation [important]
+10. Directory list activity [UGHH it's not working as planned]
 
 ### Soon
 - Lock?
