@@ -16,7 +16,15 @@ GPLv3
 ### Immediate
 8. French Translation
 9. bundledInstanceState for changing orientation [important]
-10. Directory list activity [UGHH it's not working as planned]
+9. get bitmap array forsaved instance state
+10. Directory list activity image view
+10. make direcotry row a bit bigger
+11. Image thumbnails.
+12. Remove reresh and clear btton
+13. add delete on context menu
+14. Add when empty instructions text
+15. make instructions scroll view
+16. Take out weird menu options.
 
 ### Soon
 - Lock?
