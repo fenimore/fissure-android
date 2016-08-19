@@ -43,9 +43,9 @@
     <string name="generate_btn">Generate</string>
     <string name="title_images">GIF Frames:</string>
     <string name="app_version_title">Application Version</string>
-    <string name="license_title">License</string>
+    <string name="license_title">Licence</string>
     <string name="author_title">Developer</string>
-    <string name="app_version">Fissure GIF 0.2.0</string>
+    <string name="app_version">Fissure GIF x.x.x</string>
     <string name="license">GPLv3</string>
     <string name="author">Fenimore Love</string>
     <string name="clear_all">Clear All</string>
