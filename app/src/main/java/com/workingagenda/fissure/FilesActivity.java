@@ -1,26 +1,24 @@
 package com.workingagenda.fissure;
 
-import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.workingagenda.fissure.Adapters.FilesAdapter;
 
 import java.io.File;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,39 +52,9 @@ public class FilesActivity extends AppCompatActivity {
         // Context registration
         registerForContextMenu(mList);
 
-        mList.setAdapter(new FilesAdapter(getBaseContext(), R.layout.row_download, files));
+        mList.setAdapter(new FilesAdapter(getBaseContext(), R.layout.row_file, files));
 
-//        btnClear.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                new AlertDialog.Builder(getBaseContext()).setTitle("Delete all downloads")
-//                        .setMessage("Are you sure you want to delete all episodes?\nLong click and episode to delete them individually.")
-//                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-//                            public void onClick(DialogInterface dialog, int which) {
-//                                for (File file : files) {
-//                                    // remove files
-//                                    file.delete();
-//                                }
-//                                files = getListFiles();
-//                                mList.setAdapter(new FilesAdapter(getBaseContext(), R.layout.row_download, files));
-//                                Toast toast = Toast.makeText(getBaseContext(), "GIFs Removed", Toast.LENGTH_SHORT);
-//                                toast.show();
-//                            }
-//                        }).setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        // do nothing
-//                    }
-//                }).setIcon(android.R.drawable.ic_dialog_alert).show(); // TODO: USE app theme compat?
-//            }
-//        });
-//        // Refresh Button
-//        btnRefresh.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                files = getListFiles();
-//                mList.setAdapter(new FilesAdapter(getBaseContext(), R.layout.row_download, files));
-//            }
-//        });
+
         // Click on List item
         mList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -104,6 +72,32 @@ public class FilesActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        if (v.getId() == android.R.id.list) {
+            MenuInflater inflater = new MenuInflater(getBaseContext());
+            menu.setHeaderTitle("Gif Select");
+            inflater.inflate(R.menu.menu_context, menu);
+        }
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        int pos = info.position;
+        File file = files.get(pos);
+        switch(item.getItemId()) {
+            case R.id.action_remove:
+                file.delete();
+                files = getListFiles();
+                mList.setAdapter(new FilesAdapter(getBaseContext(), R.layout.row_file, files));
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
     }
 
     private List<File> getListFiles() {

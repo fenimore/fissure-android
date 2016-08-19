@@ -1,7 +1,6 @@
 package com.workingagenda.fissure.Adapters;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +29,7 @@ public class FilesAdapter extends ArrayAdapter<File> {
         if(v == null) {
             LayoutInflater vi;
             vi = LayoutInflater.from(getContext());
-            v = vi.inflate(R.layout.row_download, null);
+            v = vi.inflate(R.layout.row_file, null);
         }
 
         File f = getItem(position);
