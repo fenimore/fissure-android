@@ -48,14 +48,14 @@
     <string name="license">GPLv3</string>
     <string name="author">Fenimore Love</string>
     <string name="clear_all">リセット</string>
-    <string name="files_activity_title">GIF Directory</string>
-    <string name="pref_dir_category">Directory Settings</string>
-    <string name="pref_img_load_summary">Too many GIFS might cause a crash in the directory viewer.</string>
-    <string name="pref_img_load_title">Load Images in Directory View</string>
-    <string name="refresh">Refresh</string>
-    <string name="title_clear">Clear</string>
-    <string name="title_instructions">Instructions</string>
-    <string name="title_select">Select</string>
-    <string name="title_view">View</string>
-    <string name="view_gif_directory">View GIF</string>
+    <string name="files_activity_title">GIF ディレクトリー</string>
+    <string name="pref_dir_category">ディレクトリー設定</string>
+    <string name="pref_img_load_summary">ディレクトリービューアーの中に GIF が多すぎるとクラッシュすることがあります。</string>
+    <string name="pref_img_load_title">ディレクトリー表示で画像を読み込む</string>
+    <string name="refresh">更新</string>
+    <string name="title_clear">クリア</string>
+    <string name="title_instructions">説明</string>
+    <string name="title_select">選択</string>
+    <string name="title_view">表示</string>
+    <string name="view_gif_directory">GIF を表示</string>
 </resources>
