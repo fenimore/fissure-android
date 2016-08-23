@@ -29,7 +29,7 @@
     <string name="pref_repeat_summary">Autrement, exécuter deux fois et arrêter</string>
     <string name="preference_activity_title">Paramètres</string>
     <string name="refresh">Actualiser</string>
-    <string name="remove">Enlever</string>
+    <string name="remove">Supprimer</string>
     <string name="requirements">Les images sélectionnées doivent être au format JPG.\nLes images doivent être les mêmes dimensions.</string>
     <string name="requirements_title">Exigences de l\'image</string>
     <string name="share_gif">Partager</string>

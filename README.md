@@ -7,13 +7,13 @@ An Android App for generating and viewing GIFs.
       alt="Get it on Google Play"
       height="80">](https://play.google.com/store/apps/details?id=com.workingagenda.fissure)
 
-## What's new in v0.2.0?
-- Japanese/French translations
-   - Although, I'm sorry Japanese locale, some small bits
-    are not translated
+## What's new in v0.2.1?
+- Full Japanese translation
+
+## What's new in v.0.2.0?
+- French and Japanese translations
 - View Gifs/ dossier and delete Gifs within app!
 - Rotating screen in GIF viewer doesn't clear image!
-- Minor tweaks and tugs :D
 
 ## License
 GPLv3
@@ -29,7 +29,7 @@ GPLv3
 ## Roadmap
 
 ### Immediate
-9. get bitmap array forsaved instance state
+9. get bitmap array for saved instance state
 14. Add when empty instructions text
 
 ### Soon
