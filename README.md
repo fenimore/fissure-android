@@ -18,6 +18,10 @@ An Android App for generating and viewing GIFs.
 ## License
 GPLv3
 
+### Icons
+- The launcher icon is public domain, created by Luis Prado (found on thenounproject.com)
+- The other icons/drawables are taken from Googles material design site (Apache v2)
+
 ## Translations!
 - Japanese (thanks naofum!)
 - French (sorry native French speakers :S )
