@@ -31,6 +31,7 @@ GPLv3
 ### Immediate
 9. get bitmap array for saved instance state
 14. Add when empty instructions text
+15. Check for permissions
 
 ### Soon
 - Lock?
