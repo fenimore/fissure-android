@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.workingagenda.fissure">
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher_2"
@@ -20,6 +21,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.gun0912.tedpicker.ImagePickerActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_picker" />
         <activity
             android:name=".PrefHelper.SettingsActivity"
             android:label="@string/preference_activity_title"

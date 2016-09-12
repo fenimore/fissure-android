@@ -34,6 +34,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.gun0912.tedpicker.ImagePickerActivity;
 import com.workingagenda.fissure.PrefHelper.SettingsActivity;
 
 import java.io.ByteArrayOutputStream;
@@ -205,45 +206,52 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case 0:
                 if (resultCode == RESULT_OK) {
                     ListView lv = (ListView) findViewById(R.id.listImage);
-                    Uri uri = data.getData();// URI, not file, of selected File
-                    Bitmap bitmap = null;
-                    try {
-                        bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
-                    } catch (IOException e) {
-                        e.printStackTrace();
+
+                    ArrayList<Uri> image_uris = data.getParcelableArrayListExtra(ImagePickerActivity.EXTRA_IMAGE_URIS);
+
+                    for(int i=0; i<image_uris.size(); i++) {
+
+                        Uri uri = Uri.fromFile(new File(image_uris.get(i).toString()));// URI, not file, of selected File
+                        Bitmap bitmap = null;
+                        try {
+                            bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                        // Compress
+                        File tmpFile = new File(Environment.getExternalStorageDirectory() +
+                                File.separator + "tmp.jpeg");
+                        FileOutputStream out = null;
+                        try {
+                            tmpFile.createNewFile();
+                            out = new FileOutputStream(tmpFile);
+                            bitmap.compress(Bitmap.CompressFormat.JPEG, COMPRESSION, out);
+                            out.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        BitmapFactory.Options options = new BitmapFactory.Options();
+                        options.inSampleSize = SAMPLE_SIZE;
+                        options.inJustDecodeBounds = false;
+                        bitmap = BitmapFactory.decodeFile(tmpFile.getPath(), options);
+                        Log.d("tmpFile", tmpFile.getPath());
+                        tmpFile.delete();
+                        bitmaps.add(bitmap);
+                        // TODO: FILE name?
+                        String[] imageId = uri.getPath().split(":");
+                        images.add("Preview Image: " + imageId[imageId.length - 1]);
+                        uris.add(uri);
+                        ((ArrayAdapter) lv.getAdapter()).notifyDataSetChanged();
                     }
-                    // Compress
-                    File tmpFile = new File(Environment.getExternalStorageDirectory() +
-                            File.separator + "tmp.jpeg");
-                    FileOutputStream out = null;
-                    try {
-                        tmpFile.createNewFile();
-                        out = new FileOutputStream(tmpFile);
-                        bitmap.compress(Bitmap.CompressFormat.JPEG, COMPRESSION, out);
-                        out.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    BitmapFactory.Options options = new BitmapFactory.Options();
-                    options.inSampleSize = SAMPLE_SIZE;
-                    options.inJustDecodeBounds = false;
-                    bitmap = BitmapFactory.decodeFile(tmpFile.getPath(), options);
-                    Log.d("tmpFile", tmpFile.getPath());
-                    tmpFile.delete();
-                    bitmaps.add(bitmap);
-                    // TODO: FILE name?
-                    String[] imageId = uri.getPath().split(":");
-                    images.add("Preview Image: "+ imageId[imageId.length-1]);
-                    uris.add(uri);
-                    ((ArrayAdapter) lv.getAdapter()).notifyDataSetChanged();
                 }
                 break;
         }
-        super.onActivityResult(requestCode, resultCode, data);
     }
 
     // Return a byte[] which is in fact an encoded GIF
@@ -274,19 +282,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void showFileChooser() {
         // TODO: Check if have permission
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("image/*");
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        // TODO: Code proper file manager
-        try {
-            startActivityForResult(
-                    Intent.createChooser(intent, "Select a File to Upload"),
-                    0);
-        } catch (ActivityNotFoundException ex) {
-            // Potentially direct the user to the Market with a Dialog?
-            Toast.makeText(this, "Please install a File Manager.",
-                    Toast.LENGTH_SHORT).show();
-        }
+        Intent intent = new Intent(MainActivity.this, ImagePickerActivity.class);
+        startActivityForResult(intent, 0);
+
     }
 
     private class GenerateGif extends AsyncTask<ArrayList, Integer, Void> {
