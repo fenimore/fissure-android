@@ -3,7 +3,7 @@
     <string name="action_settings">Settings</string>
     <string name="pref_compression">Compression</string>
     <string name="pref_repeat">Repeat Indefinitely</string>
-    <string name="load_gif">Load</string>
+    <string name="load_gif">Load From File Manager</string>
     <string name="upload_gif">Upload</string>
     <string name="clear">Reset</string>
     <string name="short_instructions">Add a frame with the  +  sign below.</string>
