@@ -18,7 +18,7 @@
     <string name="load_gif">Charger</string>
     <string name="pref_app_category">Information de l\'Application</string>
     <string name="pref_compression">Compression</string>
-    <string name="pref_compression_summary">Haute qualité va augmenter la taille du fichier</string>
+    <string name="pref_compression_summary">Haute qualité (100) va augmenter la taille du fichier</string>
     <string name="pref_default_title">Nom du fichier Défaut</string>
     <string name="pref_delay_summary">Changer de cadre en millisecondes</string>
     <string name="pref_dir_category">Paramètres du Dossier</string>

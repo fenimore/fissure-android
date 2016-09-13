@@ -44,9 +44,11 @@ public class ViewActivity  extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view);
         if (savedInstanceState != null) {
-            tmpFile = new File(Uri.parse(savedInstanceState.getString("tmpFileUri")).getPath());
-            uri = Uri.parse(savedInstanceState.getString("fileUri"));
-            displayFile(tmpFile);
+            if (savedInstanceState.getString("tmpFileUri") != null){
+                tmpFile = new File(Uri.parse(savedInstanceState.getString("tmpFileUri")).getPath());
+                uri = Uri.parse(savedInstanceState.getString("fileUri"));
+                displayFile(tmpFile);
+            }
         }
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
