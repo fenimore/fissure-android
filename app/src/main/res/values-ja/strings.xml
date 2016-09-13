@@ -58,4 +58,6 @@
     <string name="title_select">選択</string>
     <string name="title_view">表示</string>
     <string name="view_gif_directory">GIF を表示</string>
+    <string name="contributors_list">\@Swati4star @naofum</string>
+    <string name="contributors">Contributors</string>
 </resources>

@@ -53,7 +53,7 @@
             android:key="pref_static_field_key3"
             android:selectable="false"
             android:title="@string/contributors"
-            android:summary="@string/contributors_list"/>        
+            android:summary="@string/contributors_list"/>
     </PreferenceCategory>
 
 </PreferenceScreen>

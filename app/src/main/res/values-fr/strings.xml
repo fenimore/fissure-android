@@ -49,4 +49,6 @@
     <string name="file_size">Le taille de fichier peut facilement devenir trop lourd. Même si Fissue peut créer les GIFs, il ne peut pas encore les transférer!\nSi vous voulez partager un GIF, essayez de garder le compression bien en dessous de 85, et bien bien en dessous si les cadres sont plus que 5!</string>
     <string name="app_intro">Cette application est un utiliataire simple pour la création et visualisation du GIF fichiers</string>
     <string name="user_interface">Cliquez sur le signe plus sur le côté inférieur droit pour ajouter des images JPG un à la fois.\nSi laissé vide, le nom du fichier GIF sera défini par les préférences.\nCliquez sur un ID d\'image pour la voir de l\'aperçu.\nCliquez \'long\' sur un ID d\'image pour la retirer de la liste.\nGIFS sont enregistrés dans le dossier Gifs/ à l\'intérieur des photos.\nDans la vue de la sélection d\'un GIF, cliquez \'long\' sur une image pour la supprimer.</string>
+    <string name="contributors_list">\@Swati4star @naofum</string>
+    <string name="contributors">Contributeurs/Contributrices</string>
 </resources>
