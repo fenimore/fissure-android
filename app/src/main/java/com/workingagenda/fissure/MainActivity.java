@@ -290,7 +290,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showFileChooser() {
-        // TODO: Check if have permission
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.CAMERA}, 0);
+        }
         Intent intent = new Intent(MainActivity.this, ImagePickerActivity.class);
         startActivityForResult(intent, 0);
 
