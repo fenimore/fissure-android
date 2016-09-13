@@ -41,19 +41,28 @@
             android:summary="@string/app_version"/>
         <Preference
             android:key="pref_static_field_key1"
-            android:selectable="false"
+            android:selectable="true"
             android:title="@string/license_title"
-            android:summary="@string/license"/>
+            android:summary="@string/license">
+            <intent android:action="android.intent.action.VIEW"
+                android:data="https://github.com/polypmer/fissure-android"/>
+        </Preference>
         <Preference
             android:key="pref_static_field_key2"
-            android:selectable="false"
+            android:selectable="true"
             android:title="@string/author_title"
-            android:summary="@string/author"/>
+            android:summary="@string/author">
+            <intent android:action="android.intent.action.VIEW"
+                android:data="https://github.com/polypmer"/>
+        </Preference>
         <Preference
             android:key="pref_static_field_key3"
-            android:selectable="false"
+            android:selectable="true"
             android:title="@string/contributors"
-            android:summary="@string/contributors_list"/>
+            android:summary="@string/contributors_list">
+            <intent android:action="android.intent.action.VIEW"
+                android:data="https://github.com/polypmer/fissure-android/graphs/contributors"/>
+        </Preference>
     </PreferenceCategory>
 
 </PreferenceScreen>
