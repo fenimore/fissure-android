@@ -150,6 +150,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
+        //ArrayList<Uri> uris = new ArrayList<>();
+        //outState.putStringArrayList("uris", uris.eachToString());
+        // TODO: Convert uris array to string array
+        //outState.putStringArrayList("titles", images);
         super.onSaveInstanceState(outState);
 
     }
