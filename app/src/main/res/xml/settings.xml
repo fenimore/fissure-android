@@ -45,10 +45,15 @@
             android:title="@string/license_title"
             android:summary="@string/license"/>
         <Preference
-            android:key="pref_static_field_key1"
+            android:key="pref_static_field_key2"
             android:selectable="false"
             android:title="@string/author_title"
             android:summary="@string/author"/>
+        <Preference
+            android:key="pref_static_field_key3"
+            android:selectable="false"
+            android:title="@string/contributors"
+            android:summary="@string/contributors_list"/>        
     </PreferenceCategory>
 
 </PreferenceScreen>

@@ -59,4 +59,6 @@
     <string name="pref_dir_category">Directory Settings</string>
     <string name="pref_img_load_title">Load images in directory list</string>
     <string name="pref_img_load_summary">Too many GIFs might crash or crash the directory view</string>
+    <string name="contributors">Contributors</string>
+    <string name="contributors_list">\@Swati4star, @naofum</string>
 </resources>
