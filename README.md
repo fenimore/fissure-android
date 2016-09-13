@@ -52,3 +52,5 @@ GPLv3
 13. Share button
 14. Upload
 
+# Libraries
+- [TedPicker](https://github.com/ParkSangGwon/TedPicker) - Apache v2
