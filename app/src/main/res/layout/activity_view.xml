@@ -26,5 +26,19 @@
         android:layout_height="wrap_content"
         android:id="@+id/gifView"
         android:layout_marginTop="50dp"/>
+    <Button
+    android:id="@+id/load_btn"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:drawableLeft="@drawable/ic_pageview_white_24dp"
+    android:background="@color/colorPrimary"
+    android:textColor="#f5f5f5"
+    android:text="@string/title_select"
+    android:paddingStart="20sp"
+    android:paddingEnd="20sp"
+    android:visibility="gone"
+    android:layout_gravity="center_horizontal"
+    />
+
 
 </android.support.design.widget.CoordinatorLayout>
