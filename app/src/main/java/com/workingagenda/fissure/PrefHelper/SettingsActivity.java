@@ -55,6 +55,8 @@ public class SettingsActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         //noinspection SimplifiableIfStatement
+        if (id == android.R.id.home)
+            finish();
         if (id == R.id.action_source) {
             Intent browserIntent = new Intent(Intent.ACTION_VIEW,
                     Uri.parse("https://github.com/polypmer/fissure-android"));
