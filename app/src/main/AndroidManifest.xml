@@ -29,12 +29,7 @@
         <activity
             android:name=".PrefHelper.SettingsActivity"
             android:label="@string/preference_activity_title"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.workingagenda.fissure.MainActivity" />
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".ViewActivity"
             android:label="@string/view_activity_title"
