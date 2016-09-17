@@ -1,5 +1,5 @@
 # fissure-android
-An Android App for generating and viewing GIFs. 
+An Android App for generating and viewing GIFs. This application was written because although there are many alternatives out there, there are few open source GIF apps, and none on F-Droid. Now there is :).
 
 [<img src="https://f-droid.org/badge/get-it-on.png"
       alt="Get it on F-Droid"
@@ -7,11 +7,11 @@ An Android App for generating and viewing GIFs.
       alt="Get it on Google Play"
       height="80">](https://play.google.com/store/apps/details?id=com.workingagenda.fissure)
 
-## What's new in v0.3.0?
+## What's new in v0.3.6?
 - Take pictures within app! (thanks Swati4star!)
 - Select multiple frames at once! (thanks Swati4star!)
 - Ask for permissions if user doesn't got'em.
-- Small bug which causes crashing on rotation.
+- Rotation no longer clears data (thanks Swati4star!).
 - Small fixes and tweaks.
 
 ## License
@@ -32,8 +32,6 @@ GPLv3
 ## Roadmap
 
 ### Immediate
-9. get bitmap array for saved instance state
-14. Add when empty instructions text
 13. Share button
 
 ### Soon
