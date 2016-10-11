@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.media.Image;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.ParcelFileDescriptor;
@@ -16,10 +17,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.webkit.WebView;
 
-import android.widget.Button;
 import android.widget.Toast;
 
 import java.io.File;
@@ -41,43 +40,26 @@ public class ViewActivity  extends AppCompatActivity {
     final int chunkSize = 1024; // One kb at a time
     private byte[] imageData = new byte[chunkSize];
 
-    private Button btn;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view);
         if (savedInstanceState != null) {
-            if (savedInstanceState.getString("tmpFileUri") != null){
-                tmpFile = new File(Uri.parse(savedInstanceState.getString("tmpFileUri")).getPath());
-                uri = Uri.parse(savedInstanceState.getString("fileUri"));
-                displayFile(tmpFile);
-            }
+            tmpFile = new File(Uri.parse(savedInstanceState.getString("tmpFileUri")).getPath());
+            uri = Uri.parse(savedInstanceState.getString("fileUri"));
+            new displayFile(tmpFile).execute();
         }
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        btn = (Button) findViewById(R.id.load_btn);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getBaseContext(), FilesActivity.class);
-                startActivityForResult(intent, 0);
-            }
-        });
-        if(tmpFile == null) {
-            btn.setVisibility(View.VISIBLE);
-        } else {
-            btn.setVisibility((View.GONE));
-        }
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         tmpFile = new File(Environment.getExternalStorageDirectory() +
-                            File.separator + "tmp.jpeg");
+                File.separator + "tmp.jpeg");
         tmpFile.delete();
 
     }
@@ -143,7 +125,7 @@ public class ViewActivity  extends AppCompatActivity {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    displayFile(tmpFile);
+                    new displayFile(tmpFile).execute();
                 }
                 break;
         }
@@ -168,41 +150,55 @@ public class ViewActivity  extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
         }
     }
-    private void displayFile(File tmpFile) {
 
-        OutputStream out = null;
-        InputStream in = null;
-        try {
-            out = new FileOutputStream(tmpFile);
-            in = getContentResolver().openInputStream(uri);
-            int bytesRead;
-            while((bytesRead = in.read(imageData)) > 0 ) {
-                out.write(Arrays.copyOfRange(imageData, 0, Math.max(0, bytesRead)));
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
+
+
+    public class displayFile extends AsyncTask<String,String,String > {
+
+        File tmpFile;
+
+        public displayFile(File tmpFile){
+            this.tmpFile = tmpFile;
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            OutputStream out = null;
+            InputStream in = null;
             try {
-                out.close();
-                in.close();
+                out = new FileOutputStream(tmpFile);
+                in = getContentResolver().openInputStream(uri);
+                int bytesRead;
+                while((bytesRead = in.read(imageData)) > 0 ) {
+                    out.write(Arrays.copyOfRange(imageData, 0, Math.max(0, bytesRead)));
+                }
             } catch (IOException e) {
                 e.printStackTrace();
+            } finally {
+                try {
+                    out.close();
+                    in.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
+            // Construct path and load into Webview
+            String gif = "file://" + tmpFile.getPath();
+            Log.d("TMP file", tmpFile.getPath());
+            // TODO: Create padding
+            return  "<style>img{padding-top:3%;padding-right:2%;padding-left:2%;display: inline; height: auto; max-width: 95%;}"+
+                    "</style><body><img src=\"" + gif + "\"/></body>";
         }
-        // Construct path and load into Webview
-        String gif = "file://" + tmpFile.getPath();
-        Log.d("TMP file", tmpFile.getPath());
-        // TODO: Create padding
-        String html = "<style>img{padding-top:3%;padding-right:2%;padding-left:2%;display: inline; height: auto; max-width: 95%;}"+
-                "</style><body><img src=\"" + gif + "\"/></body>";
-        webView = (WebView) findViewById(R.id.gifView);
-        webView.clearCache(true); // For changing the view, literally
-        webView.loadDataWithBaseURL("file://android_asset/", html, "text/html", "utf-8", null);
-        // tmpFile deletes onDestroy()
-        if (btn != null) {
-            btn.setVisibility((View.GONE));
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            webView = (WebView) findViewById(R.id.gifView);
+            webView.clearCache(true); // For changing the view, literally
+            webView.loadDataWithBaseURL("file://android_asset/", result, "text/html", "utf-8", null);
+            // tmpFile deletes onDestroy()
+
         }
     }
+
 }
