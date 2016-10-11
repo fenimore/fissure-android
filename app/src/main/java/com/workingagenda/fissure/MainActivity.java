@@ -1,9 +1,11 @@
 package com.workingagenda.fissure;
 
+import android.Manifest;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -17,6 +19,8 @@ import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -66,6 +70,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
+        }
 
         // Create GIF folder if it doesn't exit
         GIF_DIR = new File(Environment.getExternalStorageDirectory() + File.separator +
@@ -141,6 +150,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
+        //ArrayList<Uri> uris = new ArrayList<>();
+        //outState.putStringArrayList("uris", uris.eachToString());
+        // TODO: Convert uris array to string array
+        //outState.putStringArrayList("titles", images);
         super.onSaveInstanceState(outState);
 
     }
@@ -281,7 +294,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showFileChooser() {
-        // TODO: Check if have permission
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.CAMERA}, 0);
+        }
         Intent intent = new Intent(MainActivity.this, ImagePickerActivity.class);
         startActivityForResult(intent, 0);
 

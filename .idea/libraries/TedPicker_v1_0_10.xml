@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="TedPicker-v1.0.10">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.github.ParkSangGwon/TedPicker/v1.0.10/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.github.ParkSangGwon/TedPicker/v1.0.10/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

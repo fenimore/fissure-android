@@ -3,13 +3,13 @@
     <string name="action_settings">Settings</string>
     <string name="pref_compression">Compression</string>
     <string name="pref_repeat">Repeat Indefinitely</string>
-    <string name="load_gif">Load</string>
+    <string name="load_gif">Load From File Manager</string>
     <string name="upload_gif">Upload</string>
     <string name="clear">Reset</string>
     <string name="short_instructions">Add a frame with the  +  sign below.</string>
     <string name="title_hint">Enter GIF filename, or leave blank</string>
     <string name="pref_repeat_summary">Otherwise, run twice and stop</string>
-    <string name="pref_compression_summary">Higher quality will significantly increase size</string>
+    <string name="pref_compression_summary">Higher quality (100) will significantly increase file size</string>
     <string name="pref_default_title">Default GIF Filename</string>
     <string name="pref_delay_summary">Frame switch in milliseconds</string>
     <string name="pref_delay">Delay Between Frames</string>
@@ -59,4 +59,6 @@
     <string name="pref_dir_category">Directory Settings</string>
     <string name="pref_img_load_title">Load images in directory list</string>
     <string name="pref_img_load_summary">Too many GIFs might crash or crash the directory view</string>
+    <string name="contributors">Contributors</string>
+    <string name="contributors_list">\@Swati4star @naofum</string>
 </resources>

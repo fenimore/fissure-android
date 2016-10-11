@@ -16,8 +16,10 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.webkit.WebView;
 
+import android.widget.Button;
 import android.widget.Toast;
 
 import java.io.File;
@@ -39,19 +41,36 @@ public class ViewActivity  extends AppCompatActivity {
     final int chunkSize = 1024; // One kb at a time
     private byte[] imageData = new byte[chunkSize];
 
+    private Button btn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view);
         if (savedInstanceState != null) {
-            tmpFile = new File(Uri.parse(savedInstanceState.getString("tmpFileUri")).getPath());
-            uri = Uri.parse(savedInstanceState.getString("fileUri"));
-            displayFile(tmpFile);
+            if (savedInstanceState.getString("tmpFileUri") != null){
+                tmpFile = new File(Uri.parse(savedInstanceState.getString("tmpFileUri")).getPath());
+                uri = Uri.parse(savedInstanceState.getString("fileUri"));
+                displayFile(tmpFile);
+            }
         }
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        btn = (Button) findViewById(R.id.load_btn);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getBaseContext(), FilesActivity.class);
+                startActivityForResult(intent, 0);
+            }
+        });
+        if(tmpFile == null) {
+            btn.setVisibility(View.VISIBLE);
+        } else {
+            btn.setVisibility((View.GONE));
+        }
     }
 
     @Override
@@ -182,5 +201,8 @@ public class ViewActivity  extends AppCompatActivity {
         webView.clearCache(true); // For changing the view, literally
         webView.loadDataWithBaseURL("file://android_asset/", html, "text/html", "utf-8", null);
         // tmpFile deletes onDestroy()
+        if (btn != null) {
+            btn.setVisibility((View.GONE));
+        }
     }
 }
