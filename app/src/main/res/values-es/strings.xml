@@ -1,0 +1,62 @@
+<resources>
+    <string name="app_name">Fissure</string>
+    <string name="action_settings">Ajustes</string>
+    <string name="pref_compression">Compresión</string>
+    <string name="pref_repeat">Repetir indefinidamente</string>
+    <string name="load_gif">Cargar desde gestor de archivos</string>
+    <string name="upload_gif">Subir</string>
+    <string name="clear">Restablecer</string>
+    <string name="short_instructions">Agregar un marco con el signo + abajo.</string>
+    <string name="title_hint">Introducir el nombre de archivo GIF, o dejar en blanco</string>
+    <string name="pref_repeat_summary">En otro caso, hacer funcionar dos veces y parar</string>
+    <string name="pref_compression_summary">Mayor calidad (100) incrementará significativamente el tamaño del archivo</string>
+    <string name="pref_default_title">Nombre de archivo GIF predeterminado</string>
+    <string name="pref_delay_summary">Cambiar de marco en milisegundos</string>
+    <string name="pref_delay">Retraso entre marcos</string>
+    <string name="pref_gif_category">Generación de GIF</string>
+    <string name="pref_app_category">Información de la aplicación</string>
+    <string name="remove">Eliminar</string>
+    <string name="image_options">Opciones de imagen</string>
+    <string name="share_gif">Compartir</string>
+    <string name="view_activity_title">Visor de GIF</string>
+    <string name="preference_activity_title">Preferencias</string>
+    <string name="instructions_activity_title">Instrucciones</string>
+    <string name="source">Código fuente</string>
+    <string name="requirements_title">Requisitos de imagen</string>
+    <string name="title_file_size">Tamaños de los archivos</string>
+    <string name="title_interface">Intefaz de usuario</string>
+    <string name="app_intro">Esta aplicación es una utilidad sencilla para crear y ver archivos GIF en un teléfono o tableta Android.</string>
+    <string name="user_interface">Necesitarás una aplicación externa de gestión de archivos.\nHaz clic en el signo «mas»
+        en la parte de abajo a la derecha
+        para agregar imágenes JPG, una cada vez.\nSi se deja en blanco, el nombre del archivo GIF se definirá como esté establecido en las preferencias.\nClic 
+        en una ID de imagen para previsualizarla.\nClic largo en una ID de imagen para eliminarla de la lista.\nLos GIF
+        se guardan en la carpeta de GIF dentro de Imágenes (Pictures/).\nCuando se selecciona un GIF del directorio de GIFs, se puede eliminar haciendo un clic largo en el elemento.
+    </string>
+    <string name="requirements">Las imágenes seleccionadas deben estar en el formato JPG (o JPEG).\nLas
+        imágenes deben ser de las mismas dimensiones.</string>
+    <string name="file_size">Los tamaños de los archivos GIF se pueden descontrolar rápidamente - aunque Fissure puede
+        ciertamente crear GIFs, ¡no los transferirá fuera del teléfono!\nSi
+        planeas compartir un GIF, intenta mantener su compresión por debajo de 85, y mucho más
+        si tiene más de 5 marcos.</string>
+    <string name="generate_btn">Generar</string>
+    <string name="title_images">Marcos GIF:</string>
+    <string name="app_version_title">Versión de la aplicación</string>
+    <string name="license_title">Licencia</string>
+    <string name="author_title">Desarrollador</string>
+    <string name="app_version">Fissure GIF x.x.x</string>
+    <string name="license">GPLv3</string>
+    <string name="author">Fenimore Love</string>
+    <string name="clear_all">Limpiar too</string>
+    <string name="refresh">Recargar</string>
+    <string name="files_activity_title">Directorio de GIFs</string>
+    <string name="title_select">Seleccionar</string>
+    <string name="title_view">Ver</string>
+    <string name="title_clear">Limpiar</string>
+    <string name="title_instructions">Instrucciones</string>
+    <string name="view_gif_directory">Ver directorio GIF</string>
+    <string name="pref_dir_category">Ajustes de directorio</string>
+    <string name="pref_img_load_title">Cargar imágenes en la lista de directorio</string>
+    <string name="pref_img_load_summary">Demasiados GIF podrían hacer fallar la vista de directorio</string>
+    <string name="contributors">Contribuidores</string>
+    <string name="contributors_list">\@Swati4star @naofum</string>
+</resources>
